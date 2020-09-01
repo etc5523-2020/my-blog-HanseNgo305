@@ -1,0 +1,5 @@
+---
+title: "New Thing Per Day"
+site: distill::distill_website
+listing: posts
+---

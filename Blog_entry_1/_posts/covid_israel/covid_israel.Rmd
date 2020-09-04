@@ -26,9 +26,23 @@ library(gganimate)
 library(ggplot2)
 library(kableExtra)
 library(lubridate)
+library(plotly)
+library(gifski)
+library(png)
+library(magick)
 ```
 
+Hello! and welcome to my first blog!
+
+Let's get to know each other by doing a little bit of exercise. Today i will be looking at the most heated topics being mentioned recently - the Corona virus. To be specific, i look at the Covid situation in one country of our choice, using all of the tools i have learnt so far trying to see if there is anything i can learnt from the dataset. The country we will be looking at today is Israel. 
+
 # Data description, including citing the data sources
+
+For this exercise, i used a dataset provided from xxxx which can be obtained here..... for the information of the number of cases and deaths per day recording from 31 Dec 2019 up to the most recent (3 September 2020 by the day of this blog post).
+
+Other information including the locations of cases, the age dispersion and the hospital status was obtained directly from the Israel Ministry of Health (MOH)'s daily dashboard and Telegram channel. 
+
+The process of obtaining data was not easy as even though the Israel Government kept the public up to date with timely update and release of data and figures, most of them were published in Hebrew. The trace for data started from the Wikipedia page(..) where i obtained the offical data source of the MOH, then followed along a tidious work of tracking down the MOH's telegram and downloading every files offered since i did not know which was which. After the extensive use of google translate and googling (to verify the translation work) to decide what files to use, comes the even more tedious works of manually obtaining the GPS coordinates of each Israel cities appreared in the dataset for the mapping job later. It was bit a tricky that each cities written in Hebrew could yield quite some names in English due to the pronounciation difference, thus it was no easy job to match the name of the cities in the dataset with the ones in the GPS services. I would be deeply appreciated if anyone could suggest their solutions for
 
 ```{r data-load}
 data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
@@ -41,10 +55,8 @@ raw_dat <- raw_israel %>%
   select(dateRep, day, month, year, cases, deaths, popData2019) %>%
   arrange(year, month, day) %>%
   mutate(cumulative_case = cumsum(cases),
-         cumulative_death = cumsum(deaths)) %>%
-  mutate(dateRep = dmy(dateRep)) %>%
-  # add separator
-  mutate_if(is.numeric, funs(prettyNum(., big.mark=",")))
+         cumulative_death = cumsum(deaths)) 
+  
 ```
 
 # Timeline
@@ -55,6 +67,8 @@ Let's have a look at the current situation in Israel. As of the day data was col
 
 ```{r summary-stats}
 summary <- raw_dat %>%
+  # add separator
+  mutate_if(is.numeric, funs(prettyNum(., big.mark=","))) %>%
   tail(n = 7) %>%
   select(- year,- month, - day, - popData2019)
 # Gather additional info off the Gov's telegram
@@ -92,7 +106,7 @@ dat2 <- raw_dat %>%
 
 dat2 <- data.frame(Date=rep(dat2$dateRep, 2), 
                   case_death=c(dat2$cumulative_case, dat2$cumulative_death), 
-                  grp=rep(c("case","death)"), each=nrow(dat2)))
+                  grp=rep(c("case","death"), each=nrow(dat2)))
 # animation
 p <- ggplot(dat2, aes(x=Date, y=case_death, group=grp)) +
   geom_line(color = "blue") +
@@ -100,8 +114,8 @@ p <- ggplot(dat2, aes(x=Date, y=case_death, group=grp)) +
   geom_point(size = 3, colour = "#0000FF") + 
   geom_text(aes(x = max(Date)+.1, label = sprintf("%5.0f", case_death)), hjust=0) +
   transition_reveal(Date) + 
-  view_follow(fixed_y = TRUE)+
   coord_cartesian(clip = 'off') + 
+  view_follow(fixed_y = TRUE) +
   labs(title = 'Change by days', y = 'Number of cases (upper) / death (lower)') +
   enter_drift(x_mod = -1) + exit_drift(x_mod = 1) +
   theme_bw() +
@@ -111,7 +125,7 @@ p <- ggplot(dat2, aes(x=Date, y=case_death, group=grp)) +
         axis.line = element_line(colour = "black"),
         plot.margin = margin(5.5, 40, 5.5, 5.5))
 
-    animate(p, fps=5)
+   animate(p, fps=5)
 ```
 
 
@@ -160,7 +174,7 @@ addCircleMarkers(data = city, lat =  ~lat, lng =~ lon,
 ```
 
 
-# Age of death
+# Age dispersion
 ```{r death-age}
 age_raw <- read.csv(here::here("Blog_entry_1", "death_report_02_09_20.csv"))
 age_death <- age_raw %>%

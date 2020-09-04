@@ -1,0 +1,283 @@
+---
+title: "How are the Jewish doing?"
+description: |
+  Let's dwelve into our first blog
+author:
+  - name: Hanh Ngo
+    url: https://example.com/norajones
+    affiliation: Spacely SprocketsB
+    affiliation_url: https://example.com/spacelysprokets
+date: 09-01-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+library(tidyverse)
+library(shiny)
+library(leaflet)
+library(DT)
+library(RColorBrewer)
+library(gganimate)
+library(ggplot2)
+library(kableExtra)
+library(lubridate)
+```
+
+# Data description, including citing the data sources
+
+```{r data-load}
+data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
+raw_israel <- data %>%
+  filter(countriesAndTerritories == "Israel") 
+```
+
+```{r raw-data}
+raw_dat <- raw_israel %>%
+  select(dateRep, day, month, year, cases, deaths, popData2019) %>%
+  arrange(year, month, day) %>%
+  mutate(cumulative_case = cumsum(cases),
+         cumulative_death = cumsum(deaths)) %>%
+  mutate(dateRep = dmy(dateRep)) %>%
+  # add separator
+  mutate_if(is.numeric, funs(prettyNum(., big.mark=",")))
+```
+
+# Timeline
+
+## Overall situation
+
+Let's have a look at the current situation in Israel. As of the day data was collected, i.e by the end of 3 September 2020, Israel has:
+
+```{r summary-stats}
+summary <- raw_dat %>%
+  tail(n = 7) %>%
+  select(- year,- month, - day, - popData2019)
+# Gather additional info off the Gov's telegram
+add_info <- tibble::tribble(
+  ~active_patient, ~recovered, ~test_performed_inday,
+  20055, 91051, 36371,
+  20331, 92100, 23263,
+  20305, 92796, 10592,
+  20648, 95009, 13406,
+  20960, 96206, 31705,
+  23261, 97234, 28259,
+  24281, 98637, 34857
+) %>%
+  # add separator
+  mutate_each(funs(prettyNum(., big.mark=",")))
+
+# cbind all the columns
+summary <- summary %>%
+  cbind(add_info)
+# print off the table
+summary %>%
+  kable %>%
+  kable_styling(bootstrap_options = c("hover", "stripped")) %>%
+  row_spec(7, bold = T, background = "yellow")
+```
+
+
+## Timeline
+
+```{r change-by-day}
+# Stack data to prepare for plotting
+dat2 <- raw_dat %>%
+  select(dateRep, cumulative_case, cumulative_death) %>%
+  mutate(dateRep = dmy(dateRep))
+
+dat2 <- data.frame(Date=rep(dat2$dateRep, 2), 
+                  case_death=c(dat2$cumulative_case, dat2$cumulative_death), 
+                  grp=rep(c("case","death)"), each=nrow(dat2)))
+# animation
+p <- ggplot(dat2, aes(x=Date, y=case_death, group=grp)) +
+  geom_line(color = "blue") +
+  geom_segment(aes(xend=max(Date), yend = case_death), linetype=2, colour='#CC0033') +
+  geom_point(size = 3, colour = "#0000FF") + 
+  geom_text(aes(x = max(Date)+.1, label = sprintf("%5.0f", case_death)), hjust=0) +
+  transition_reveal(Date) + 
+  view_follow(fixed_y = TRUE)+
+  coord_cartesian(clip = 'off') + 
+  labs(title = 'Change by days', y = 'Number of cases (upper) / death (lower)') +
+  enter_drift(x_mod = -1) + exit_drift(x_mod = 1) +
+  theme_bw() +
+  theme(panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        plot.margin = margin(5.5, 40, 5.5, 5.5))
+
+    animate(p, fps=5)
+```
+
+
+# Location 
+```{r city-dat}
+# read the location
+city_raw <- read.csv(here::here("Blog_entry_1", "israel_city_02_09_20.csv"))
+city <- city_raw %>%
+  select(city_ENG, active_case, lat, lon) %>%
+  # Pick only location with more than 15 active cases
+  filter(!active_case == "Less than 15",
+  # Filter out locations without coordinates
+         !is.na(lat)) %>%
+  mutate(active_case = as.numeric(as.character(active_case)),
+    # categorize for plotting purpose
+    category = case_when(
+    active_case <= 50 ~ "<= 50 cases",
+    active_case > 50 & active_case <= 100 ~ "51 - 100 cases",
+    active_case > 100 & active_case <= 500 ~ "101 - 500 cases",
+    active_case > 500 & active_case <= 1000 ~ "501 - 1000 cases",
+    TRUE ~ "more than 1000 cases")
+  )
+```
+
+```{r map-location}
+# Create factor for legend
+case_factor <- factor(city$category, 
+                      levels = c("<= 50 cases","51 - 100 cases","101 - 500 cases","501 - 1000 cases","more than 1000 cases"),
+                      labels = c("<= 50 cases","51 - 100 cases","101 - 500 cases","501 - 1000 cases","more than 1000 cases"))
+
+# Create colour palette
+pal <- colorFactor(pal = "YlOrRd", 
+                   levels = case_factor, reverse = TRUE)
+
+# Draw leaflet
+leaflet() %>%
+addProviderTiles(providers$Stamen.Toner) %>%
+setView(34.4, 33.2, 7) %>%
+addCircleMarkers(data = city, lat =  ~lat, lng =~ lon,
+           popup = ~as.character(paste0('<strong>City/ Town: </strong>',city_ENG,
+                                          '<br><strong>Active case:</strong> ', active_case)),
+           color = ~pal(city$category),
+           radius = 3, fillOpacity = 0.8, stroke = FALSE) %>%
+  addLegend(pal = pal, values = case_factor, opacity=1,
+            title = "No of cases")
+```
+
+
+# Age of death
+```{r death-age}
+age_raw <- read.csv(here::here("Blog_entry_1", "death_report_02_09_20.csv"))
+age_death <- age_raw %>%
+  select(4:5) %>%
+  filter(!gender == "unknown") %>%
+  mutate(age_group = case_when(
+    age >= 0 & age <10 ~ "0 - 9",
+    age > 9 & age < 20 ~ "10 - 19",
+    age > 19 & age < 29 ~ "20 - 29",
+    age > 29 & age < 39 ~ "30 - 39",
+    age > 39 & age < 49 ~ "40 - 49",
+    age > 49 & age < 59 ~ "50 - 59",
+    age > 59 & age < 69 ~ "60 - 69",
+    age > 69 & age < 79 ~ "70 - 79",
+    age > 79 & age < 89 ~ "80 - 89",
+    TRUE ~ "90+")
+  ) %>%
+  group_by(age_group, gender) %>%
+  count() %>%
+  # flip female ages to negative side of the chart
+  mutate(prop = n/(nrow(age_raw)-1)*100,
+         prop = ifelse(gender=="female", prop*(-1), prop*1)) %>%
+  ungroup()
+
+p2 <- age_death %>%
+ggplot(aes(x = age_group, y = prop, fill = gender)) + 
+  geom_bar(data = subset(age_death, gender == "female"), stat = "identity") + 
+  geom_bar(data = subset(age_death, gender == "male"), stat = "identity") + 
+  scale_y_continuous("percentage (%)", breaks = scales::breaks_pretty(n = 6),
+                     # Convert negative number to positive
+                     labels = function(br) ifelse(br>=0,br, abs(br))) + 
+  coord_flip() + 
+  scale_fill_brewer(palette = "Set1") + 
+  xlab("") +
+  theme_classic() +
+  theme(legend.position = "none")
+```
+
+```{r case-age}
+# Percentage from gov databoard for 2 Sep 2020
+age_case <- tibble::tribble(
+  ~age_group, ~gender, ~percentage,
+  "0-9", "female", 5.20,
+  "10-19", "female", 8.50,
+  "20-29", "female", 10.30,
+  "30-39", "female", 7,
+  "40-49", "female", 6.60,
+  "50-59", "female", 5.10,
+  "60-69", "female", 3.20,
+  "70-79", "female", 1.60,
+  "80-89", "female", 1,
+  "90+", "female", 0.5,
+  "0-9", "male", 5.30,
+  "10-19", "male", 11,
+  "20-29", "male", 10.5,
+  "30-39", "male", 7.10,
+  "40-49", "male", 6.20,
+  "50-59", "male", 4.90,
+  "60-69", "male", 3.40,
+  "70-79", "male", 1.70,
+  "80-89", "male", 0.70,
+  "90+", "male", 0.20) %>%
+  # flip female ages to negative side of the chart 
+  mutate(percentage = ifelse(gender=="female", percentage*(-1), percentage*1))
+
+p3 <- age_case %>%
+ggplot(aes(x = age_group, y = percentage, fill = gender)) + 
+  geom_bar(data = subset(age_case, gender == "female"), stat = "identity") + 
+  geom_bar(data = subset(age_case, gender == "male"), stat = "identity") + 
+  scale_y_continuous("percentage (%)", breaks = scales::breaks_pretty(n = 6),
+                     # Convert negative number to positive
+                     labels = function(br) ifelse(br>=0,br, abs(br))) + 
+  coord_flip() + 
+  scale_fill_brewer(palette = "Set1") + 
+  xlab("") +
+  labs(title = "Death (left) and Case (right) proportion by age group and gender") +
+  theme_classic()
+
+# Put two plots side by side
+subplot(p2,p3)
+```
+
+# Hosital situation
+
+```{r}
+hospital_status <- read.csv(here::here("Blog_entry_1", "hospital_status.csv")) %>%
+  select(1:5)
+
+# Print the hospital table
+datatable(hospital_status, filter = "top",  
+            extensions =  'Buttons', 
+            options = list(dom = 'Blfrtip',
+                           buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+                           lengthMenu = list(c(10,20,30,-1),c(10,20,30,"All"))
+                           ),
+            colnames = c("Hospital_Hebrew", "Hospital_Eng", "Area", "Occupancy", "Corona_Occupancy")
+            )
+```
+
+# How i collect data?
+This is interesting since i dont understand Hebrew
+
+
+
+
+## Reference
+https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
+
+https://latitudelongitude.org/il/
+
+https://www.geodatos.net/en/coordinates/israel
+https://latitude.to/articles-by-country/il/israel/69512/kiryat-motzkin
+
+http://www.longitude-latitude-maps.com/city/102_153,Pardes+Hanna-Karkur,Haifa,Israel
+
+https://www.latlong.net/place/rehovot-israel-925.html
+
+https://stackoverflow.com/questions/54855334/gganimate-time-series-and-two-line-plot
+
+http://alburez.me/2018-03-20-Population-pyramids-in-R-for-beginners/

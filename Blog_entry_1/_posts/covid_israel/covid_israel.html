@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+  <title>How are the Jewish doing?</title>
+  
+  <meta property="description" itemprop="description" content="Let&#39;s dwelve into our first blog"/>
+  
+  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2020-09-01"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-09-01"/>
+  <meta name="article:author" content="Hanh Ngo"/>
+  
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="How are the Jewish doing?"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Let&#39;s dwelve into our first blog"/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="How are the Jewish doing?"/>
+  <meta property="twitter:description" content="Let&#39;s dwelve into our first blog"/>
+  
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["How are the Jewish doing?"]},{"type":"character","attributes":{},"value":["Let's dwelve into our first blog\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Hanh Ngo"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]},{"type":"character","attributes":{},"value":["Spacely SprocketsB"]},{"type":"character","attributes":{},"value":["https://example.com/spacelysprokets"]}]}]},{"type":"character","attributes":{},"value":["09-01-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["covid_israel_files/bowser-1.9.3/bowser.min.js","covid_israel_files/distill-2.2.21/template.v2.js","covid_israel_files/htmlwidgets-1.5.1/htmlwidgets.js","covid_israel_files/jquery-1.11.3/jquery.min.js","covid_israel_files/jquery-1.12.4/jquery.min.js","covid_israel_files/leaflet-1.3.1/images/layers-2x.png","covid_israel_files/leaflet-1.3.1/images/layers.png","covid_israel_files/leaflet-1.3.1/images/marker-icon-2x.png","covid_israel_files/leaflet-1.3.1/images/marker-icon.png","covid_israel_files/leaflet-1.3.1/images/marker-shadow.png","covid_israel_files/leaflet-1.3.1/leaflet.css","covid_israel_files/leaflet-1.3.1/leaflet.js","covid_israel_files/leaflet-binding-2.0.3/leaflet.js","covid_israel_files/leafletfix-1.0.0/leafletfix.css","covid_israel_files/Proj4Leaflet-1.0.1/proj4-compressed.js","covid_israel_files/Proj4Leaflet-1.0.1/proj4leaflet.js","covid_israel_files/rstudio_leaflet-1.3.1/images/1px.png","covid_israel_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css","covid_israel_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+  
+  <style type="text/css">
+  
+  body {
+    background-color: white;
+  }
+  
+  .pandoc-table {
+    width: 100%;
+  }
+  
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+  
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+  
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+  
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+  
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+  
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+  
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .shaded-content {
+    background: white;
+  }
+  
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  d-article {
+    padding-bottom: 30px;
+  }
+  
+  d-appendix {
+    padding-top: 30px;
+  }
+  
+  d-article>p>img {
+    width: 100%;
+  }
+  
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+  
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  /* CSS for table of contents */
+  
+  .d-toc {
+    color: rgba(0,0,0,0.8);
+    font-size: 0.8em;
+    line-height: 1em;
+  }
+  
+  .d-toc-header {
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 1.3em;
+  }
+  
+  .d-toc a {
+    border-bottom: none;
+  }
+  
+  .d-toc ul {
+    padding-left: 0;
+  }
+  
+  .d-toc li>ul {
+    padding-top: 0.8em;
+    padding-left: 16px;
+    margin-bottom: 0.6em;
+  }
+  
+  .d-toc ul,
+  .d-toc li {
+    list-style-type: none;
+  }
+  
+  .d-toc li {
+    margin-bottom: 0.9em;
+  }
+  
+  .d-toc-separator {
+    margin-top: 20px;
+    margin-bottom: 2em;
+  }
+  
+  .d-article-with-toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  
+  
+  
+  /* Tweak code blocks (note that this CSS is repeated above in an injection
+     into the d-code shadow dom) */
+  
+  d-code {
+    overflow-x: auto !important;
+  }
+  
+  pre.d-code code.d-code {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+  
+  pre.text-output {
+  
+    font-size: 12px;
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  @media(min-width: 768px) {
+  
+  d-code {
+    overflow-x: visible !important;
+  }
+  
+  pre.d-code code.d-code  {
+      padding-left: 18px;
+      font-size: 14px;
+  }
+  pre.text-output {
+    font-size: 14px;
+  }
+  }
+  
+  /* Figure */
+  
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+  
+  .figure img {
+    width: 100%;
+  }
+  
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+  
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+  
+  
+  
+  /* Tweak 1000px media break to show more text */
+  
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+  
+    .grid {
+      grid-column-gap: 16px;
+    }
+  
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+  
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+  
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+  
+  
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+  
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  
+  /* Social footer */
+  
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+  
+  .disqus-comments {
+    margin-right: 30px;
+  }
+  
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+  
+  #disqus_thread {
+    margin-top: 30px;
+  }
+  
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+  
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+  
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+  
+  
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+  
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+  
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+  
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+  
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+  
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  
+  
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+  
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+  
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+  
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+  
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  </style>
+  
+  <script type="application/javascript">
+  
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+  
+  // show body when load is complete
+  function on_load_complete() {
+  
+    // set body to visible
+    document.body.style.visibility = 'visible';
+  
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+  
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+  
+  function init_distill() {
+  
+    init_common();
+  
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+  
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+  
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+  
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+  
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+  
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+  
+    // create d-bibliography
+    var bibliography = $('<d-bibliography></d-bibliography>');
+    $('#distill-bibliography').wrap(bibliography);
+  
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+  
+    // replace citations with <d-cite>
+    $('.citation').each(function(i, val) {
+      appendix = true;
+      var cites = $(this).attr('data-cites').split(" ");
+      var dt_cite = $('<d-cite></d-cite>');
+      dt_cite.attr('key', cites.join());
+      $(this).replaceWith(dt_cite);
+    });
+    // remove refs
+    $('#refs').remove();
+  
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+  
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-toc a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+  
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+  
+    // replace code blocks with d-code
+    $('pre>code').each(function(i, val) {
+      var code = $(this);
+      var pre = code.parent();
+      var clz = "";
+      var language = pre.attr('class');
+      if (language) {
+        // map unknown languages to "clike" (without this they just dissapear)
+        if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                                 "javascript", "js", "julia", "lua", "markdown",
+                                 "markup", "mathml", "python", "svg", "xml"]) == -1)
+          language = "clike";
+        language = ' language="' + language + '"';
+        var dt_code = $('<d-code block' + language + clz + '></d-code>');
+        dt_code.text(code.text());
+        pre.replaceWith(dt_code);
+      } else {
+        code.addClass('text-output').unwrap().changeElementType('pre');
+      }
+    });
+  
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+  
+      // capture layout
+      var layout = $(this).attr('data-layout');
+  
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('d-code, pre.text-output, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+  
+  
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+  
+    // load distill framework
+    load_distill_framework();
+  
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+  
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+  
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+  
+      // table of contents
+      if (have_authors) // adjust border if we are in authors
+        $('.d-toc').parent().addClass('d-article-with-toc');
+  
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+  
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+  
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+  
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+  
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+  
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+  
+      // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+      $('d-code').each(function(i, val) {
+        var style = document.createElement('style');
+        style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                          '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+        if (this.shadowRoot)
+          this.shadowRoot.appendChild(style);
+      });
+  
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+  
+      // clear polling timer
+      clearInterval(tid);
+  
+      // show body now that everything is ready
+      on_load_complete();
+    }
+  
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+  
+  }
+  
+  function init_downlevel() {
+  
+    init_common();
+  
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+  
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+  
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+  
+    // remove toc
+    $('.d-toc-header').remove();
+    $('.d-toc').remove();
+    $('.d-toc-separator').remove();
+  
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+  
+  
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+  
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+  
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+  
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+  
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+  
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+  
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+  
+    $('body').addClass('downlevel');
+  
+    on_load_complete();
+  }
+  
+  
+  function init_common() {
+  
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+  
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+  
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+  
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+  
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+  
+      }
+    });
+  
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+  
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+  
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+  
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+  
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+  
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+  
+  </script>
+  
+  <!--/radix_placeholder_distill-->
+  <script src="covid_israel_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+  <script src="covid_israel_files/jquery-1.12.4/jquery.min.js"></script>
+  <link href="covid_israel_files/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+  <script src="covid_israel_files/leaflet-1.3.1/leaflet.js"></script>
+  <link href="covid_israel_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+  <script src="covid_israel_files/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+  <script src="covid_israel_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="covid_israel_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+  <script src="covid_israel_files/leaflet-binding-2.0.3/leaflet.js"></script>
+  <script src="covid_israel_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="covid_israel_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="covid_israel_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"How are the Jewish doing?","description":"Let's dwelve into our first blog","authors":[{"author":"Hanh Ngo","authorURL":"https://example.com/norajones","affiliation":"Spacely SprocketsB","affiliationURL":"https://example.com/spacelysprokets"}],"publishedDate":"2020-09-01T00:00:00.000+07:00","citationText":"Ngo, 2020"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>How are the Jewish doing?</h1>
+<p>Let’s dwelve into our first blog</p>
+</div>
+
+<div class="d-byline">
+  Hanh Ngo <a href="https://example.com/norajones" class="uri">https://example.com/norajones</a> (Spacely SprocketsB)<a href="https://example.com/spacelysprokets" class="uri">https://example.com/spacelysprokets</a>
+  
+<br/>09-01-2020
+</div>
+
+<div class="d-article">
+<h1 id="data-description-including-citing-the-data-sources">Data description, including citing the data sources</h1>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h1 id="timeline">Timeline</h1>
+<h1 id="location">Location</h1>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div id="htmlwidget-f5e9fb1d606ddb51ccc4" style="width:624px;height:384px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f5e9fb1d606ddb51ccc4">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[31.769,32.05,32.818,32.087,31.971,31.792,32.333,32.081,31.252,32.01,32.082,31.669,31.895,32.024,31.731,32.175,32.442,32.166,31.908,32.699,31.932,31.947,31.929,32.184,31.395,31.693,32.159,33.011,32.096,32.809,31.61,29.558,32.517,32.072,32.609,32.928,32.05,32.917,31.881,31.929,32.146,32.792,32.708,32.267,32.833,32.476,32.806,32.828,32.849,31.422,31.777,32.061,32.965,31.071,32.029,32.853,32.864,31.314,32.419,32.033,31.523,31.259,32.234,32.849,32.676,31.939,32.078,31.815,31.729,32.114,32.659,31.804,32.285,32.76,32.317,32.747,32.89,33.017,31.787,32.574,32.766,33.208,32.928,32.81,31.999,32.496,32.06,32.5,32.497,32.686,32.507,31.861,31.245,32.694,32.722,32.954,32.922,31.32,32.554,31.854,32.538,32.682,32.777,32.459,32.723,32.934,32.95,32.27,32.597,32.823,32.25,32.92,32.749,32.869,32.718,32.399,32.024,32.965,31.658,33.268,32.502,32.955,32.862,32.693,32.155,32.807,31.327,32.228,32.132,31.88,32.738,32.964,32.929,32.717,32.172,32.939,31.806,31.264,32.889,32.367,31.989,33.2,32.983,33.017,32.944,32.162,32.514,32.932,32.131,31.793,32.89,31.284,32.792,31.93,33.025,31.956,32.992,33.273,30.977,31.66,31.677,31.083,32.15,31.864,31.326,31.142],[35.216,34.752,34.989,34.887,34.789,34.65,34.86,34.834,34.791,34.779,34.811,34.571,34.809,34.752,34.993,34.907,34.904,34.825,35.008,35.305,35.044,34.89,34.866,34.874,34.757,35.118,34.893,35.095,34.957,35.12,34.764,34.948,35.153,34.813,35.289,35.076,34.954,35.305,34.738,34.799,34.839,35.531,35.325,35.01,35.083,34.976,35.169,35.086,35.069,34.589,35.298,34.856,35.496,35.034,34.858,35.199,35.297,34.62,35.039,34.891,34.596,35.213,34.95,35.336,35.24,34.838,34.849,34.78,34.712,34.976,35.106,35.158,34.981,34.972,34.935,35.342,35.407,35.267,34.707,34.952,35.044,35.57,35.157,35.26,34.946,35.094,34.873,34.917,35.496,35.274,35.054,35.169,35.093,35.047,35.315,35.212,35.256,34.859,35.184,34.846,34.912,35.324,35.376,35.043,35.353,35.317,35.167,34.888,34.951,35.192,34.917,35.272,35.099,35.212,35.065,35.037,34.806,35.382,35.153,35.773,35.104,35.162,35.364,35.371,34.954,35.367,34.939,35.001,34.991,35.246,35.326,35.302,35.273,35.263,35.098,35.367,35.109,34.847,35.239,35.035,34.852,35.783,35.244,35.348,35.186,35.137,35.295,35.32,34.972,35.118,35.369,34.916,35.331,35.017,35.259,35.26,35.148,35.623,34.696,35.142,35.144,34.979,35.115,34.8,34.677,34.914],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<strong>City/ Town: <\/strong>Jerusalem<br><strong>Active case:<\/strong> 2,601","<strong>City/ Town: <\/strong>Tel Aviv-Jaffa<br><strong>Active case:<\/strong> 661","<strong>City/ Town: <\/strong>Haifa<br><strong>Active case:<\/strong> 440","<strong>City/ Town: <\/strong>Petah Tiqwa<br><strong>Active case:<\/strong> 410","<strong>City/ Town: <\/strong>Rishon Leziyyon<br><strong>Active case:<\/strong> 268","<strong>City/ Town: <\/strong>Ashdod<br><strong>Active case:<\/strong> 776","<strong>City/ Town: <\/strong>Netanya<br><strong>Active case:<\/strong> 452","<strong>City/ Town: <\/strong>Bené Beraq<br><strong>Active case:<\/strong> 872","<strong>City/ Town: <\/strong>Beersheba<br><strong>Active case:<\/strong> 311","<strong>City/ Town: <\/strong>Holon<br><strong>Active case:<\/strong> 288","<strong>City/ Town: <\/strong>Ramat Gan<br><strong>Active case:<\/strong> 195","<strong>City/ Town: <\/strong>Ashqelon<br><strong>Active case:<\/strong> 263","<strong>City/ Town: <\/strong>Rehovot<br><strong>Active case:<\/strong> 168","<strong>City/ Town: <\/strong>Bat Yam<br><strong>Active case:<\/strong> 212","<strong>City/ Town: <\/strong>Bet Shemesh<br><strong>Active case:<\/strong> 287","<strong>City/ Town: <\/strong>Kfar Saba<br><strong>Active case:<\/strong> 104","<strong>City/ Town: <\/strong>Hadera<br><strong>Active case:<\/strong> 174","<strong>City/ Town: <\/strong>Herzliyya<br><strong>Active case:<\/strong> 98","<strong>City/ Town: <\/strong>Modi'in-Maccabim-Re'ut<br><strong>Active case:<\/strong> 128","<strong>City/ Town: <\/strong>Nazareth<br><strong>Active case:<\/strong> 242","<strong>City/ Town: <\/strong>Modiin Ilit<br><strong>Active case:<\/strong> 453","<strong>City/ Town: <\/strong>Lod<br><strong>Active case:<\/strong> 173","<strong>City/ Town: <\/strong>Ramla<br><strong>Active case:<\/strong> 239","<strong>City/ Town: <\/strong>Ra'anana<br><strong>Active case:<\/strong> 104","<strong>City/ Town: <\/strong>Rahat<br><strong>Active case:<\/strong> 361","<strong>City/ Town: <\/strong>Beitar Illit<br><strong>Active case:<\/strong> 191","<strong>City/ Town: <\/strong>Hod Hasharon<br><strong>Active case:<\/strong> 69","<strong>City/ Town: <\/strong>Nahariya<br><strong>Active case:<\/strong> 76","<strong>City/ Town: <\/strong>Rosh Ha‘Ayin<br><strong>Active case:<\/strong> 154","<strong>City/ Town: <\/strong>Kiryat Ata<br><strong>Active case:<\/strong> 70","<strong>City/ Town: <\/strong>Qiryat Gat<br><strong>Active case:<\/strong> 125","<strong>City/ Town: <\/strong>Eilat<br><strong>Active case:<\/strong> 42","<strong>City/ Town: <\/strong>Umm el Fahm<br><strong>Active case:<\/strong> 334","<strong>City/ Town: <\/strong>Giv‘atayim<br><strong>Active case:<\/strong> 43","<strong>City/ Town: <\/strong>Afula<br><strong>Active case:<\/strong> 87","<strong>City/ Town: <\/strong>Acre<br><strong>Active case:<\/strong> 121","<strong>City/ Town: <\/strong>Elad<br><strong>Active case:<\/strong> 180","<strong>City/ Town: <\/strong>Karmi’el<br><strong>Active case:<\/strong> 70","<strong>City/ Town: <\/strong>Yavne<br><strong>Active case:<\/strong> 76","<strong>City/ Town: <\/strong>Ness Ziona<br><strong>Active case:<\/strong> 42","<strong>City/ Town: <\/strong>Ramat Hasharon<br><strong>Active case:<\/strong> 40","<strong>City/ Town: <\/strong>Tiberias<br><strong>Active case:<\/strong> 186","<strong>City/ Town: <\/strong>Nazareth Illit<br><strong>Active case:<\/strong> 49","<strong>City/ Town: <\/strong>Tayibe<br><strong>Active case:<\/strong> 208","<strong>City/ Town: <\/strong>Kiryat Motzkin<br><strong>Active case:<\/strong> 43","<strong>City/ Town: <\/strong>Pardes Hanna-Karkur<br><strong>Active case:<\/strong> 54","<strong>City/ Town: <\/strong>Shefa-'Amr<br><strong>Active case:<\/strong> 83","<strong>City/ Town: <\/strong>Qiryat Bialik<br><strong>Active case:<\/strong> 31","<strong>City/ Town: <\/strong>Kiryat Yam<br><strong>Active case:<\/strong> 27","<strong>City/ Town: <\/strong>Netivot<br><strong>Active case:<\/strong> 176","<strong>City/ Town: <\/strong>Ma'ale Adumim<br><strong>Active case:<\/strong> 62","<strong>City/ Town: <\/strong>Kiryat Ono<br><strong>Active case:<\/strong> 50","<strong>City/ Town: <\/strong>Safed<br><strong>Active case:<\/strong> 59","<strong>City/ Town: <\/strong>Dimona<br><strong>Active case:<\/strong> 44","<strong>City/ Town: <\/strong>Or Yehuda<br><strong>Active case:<\/strong> 127","<strong>City/ Town: <\/strong>Tamra<br><strong>Active case:<\/strong> 46","<strong>City/ Town: <\/strong>Sakhnin<br><strong>Active case:<\/strong> 205","<strong>City/ Town: <\/strong>Ofaqim<br><strong>Active case:<\/strong> 82","<strong>City/ Town: <\/strong>Baqa al-Gharbiyye<br><strong>Active case:<\/strong> 90","<strong>City/ Town: <\/strong>Yehud<br><strong>Active case:<\/strong> 41","<strong>City/ Town: <\/strong>Sderot<br><strong>Active case:<\/strong> 36","<strong>City/ Town: <\/strong>Arad<br><strong>Active case:<\/strong> 20","<strong>City/ Town: <\/strong>Tira<br><strong>Active case:<\/strong> 476","<strong>City/ Town: <\/strong>Arraba<br><strong>Active case:<\/strong> 17","<strong>City/ Town: <\/strong>Migdal Hameq<br><strong>Active case:<\/strong> 34","<strong>City/ Town: <\/strong>Be'er Ya'aqov<br><strong>Active case:<\/strong> 58","<strong>City/ Town: <\/strong>Giv'at Shmuel<br><strong>Active case:<\/strong> 31","<strong>City/ Town: <\/strong>Gedera<br><strong>Active case:<\/strong> 45","<strong>City/ Town: <\/strong>Kiryat Mal'akhi<br><strong>Active case:<\/strong> 64","<strong>City/ Town: <\/strong>Kafr Qasim<br><strong>Active case:<\/strong> 392","<strong>City/ Town: <\/strong>Yokneam<br><strong>Active case:<\/strong> 25","<strong>City/ Town: <\/strong>Mevaseret Zion<br><strong>Active case:<\/strong> 25","<strong>City/ Town: <\/strong>Qalansuwa<br><strong>Active case:<\/strong> 133","<strong>City/ Town: <\/strong>Tirat Karmel<br><strong>Active case:<\/strong> 24","<strong>City/ Town: <\/strong>Kefar Yona<br><strong>Active case:<\/strong> 24","<strong>City/ Town: <\/strong>Kafr Kanna<br><strong>Active case:<\/strong> 90","<strong>City/ Town: <\/strong>Maghar<br><strong>Active case:<\/strong> 62","<strong>City/ Town: <\/strong>Ma'alot-Tarshiha<br><strong>Active case:<\/strong> 32","<strong>City/ Town: <\/strong>Gan Yavne<br><strong>Active case:<\/strong> 28","<strong>City/ Town: <\/strong>Zikhron Ya'akov<br><strong>Active case:<\/strong> 29","<strong>City/ Town: <\/strong>Nesher<br><strong>Active case:<\/strong> 32","<strong>City/ Town: <\/strong>Kiryat Shmona<br><strong>Active case:<\/strong> 25","<strong>City/ Town: <\/strong>Jadeidi-Makr<br><strong>Active case:<\/strong> 164","<strong>City/ Town: <\/strong>Kafr Manda<br><strong>Active case:<\/strong> 67","<strong>City/ Town: <\/strong>Shoham<br><strong>Active case:<\/strong> 39","<strong>City/ Town: <\/strong>Ar‘ara<br><strong>Active case:<\/strong> 89","<strong>City/ Town: <\/strong>Ganei Tikva<br><strong>Active case:<\/strong> 22","<strong>City/ Town: <\/strong>Or Akiva<br><strong>Active case:<\/strong> 32","<strong>City/ Town: <\/strong>Bet She’an<br><strong>Active case:<\/strong> 40","<strong>City/ Town: <\/strong>Yafa an-Naseriyye<br><strong>Active case:<\/strong> 53","<strong>City/ Town: <\/strong>Kafr Qari<br><strong>Active case:<\/strong> 53","<strong>City/ Town: <\/strong>Givat Zeev<br><strong>Active case:<\/strong> 40","<strong>City/ Town: <\/strong>Kuseife<br><strong>Active case:<\/strong> 19","<strong>City/ Town: <\/strong>Daliyat al Karmel<br><strong>Active case:<\/strong> 214","<strong>City/ Town: <\/strong>Reineh<br><strong>Active case:<\/strong> 55","<strong>City/ Town: <\/strong>Yarka<br><strong>Active case:<\/strong> 69","<strong>City/ Town: <\/strong>Majd el Kirum<br><strong>Active case:<\/strong> 80","<strong>City/ Town: <\/strong>Laqiya<br><strong>Active case:<\/strong> 230","<strong>City/ Town: <\/strong>Ma'aleh Iron<br><strong>Active case:<\/strong> 180","<strong>City/ Town: <\/strong>Mazkeret Batya<br><strong>Active case:<\/strong> 16","<strong>City/ Town: <\/strong>Jisr az-Zarqa<br><strong>Active case:<\/strong> 54","<strong>City/ Town: <\/strong>Iksal<br><strong>Active case:<\/strong> 22","<strong>City/ Town: <\/strong>Tur'an<br><strong>Active case:<\/strong> 39","<strong>City/ Town: <\/strong>Harish<br><strong>Active case:<\/strong> 28","<strong>City/ Town: <\/strong>Ein Mahil<br><strong>Active case:<\/strong> 121","<strong>City/ Town: <\/strong>Nahf<br><strong>Active case:<\/strong> 29","<strong>City/ Town: <\/strong>Abu Snan<br><strong>Active case:<\/strong> 55","<strong>City/ Town: <\/strong>Even Yehuda<br><strong>Active case:<\/strong> 15","<strong>City/ Town: <\/strong>Fureidis<br><strong>Active case:<\/strong> 41","<strong>City/ Town: <\/strong>I'billin<br><strong>Active case:<\/strong> 43","<strong>City/ Town: <\/strong>Tel Mond<br><strong>Active case:<\/strong> 17","<strong>City/ Town: <\/strong>Deir Al-Assad<br><strong>Active case:<\/strong> 38","<strong>City/ Town: <\/strong>Rekhasim<br><strong>Active case:<\/strong> 60","<strong>City/ Town: <\/strong>Kabul<br><strong>Active case:<\/strong> 16","<strong>City/ Town: <\/strong>Isfiya<br><strong>Active case:<\/strong> 88","<strong>City/ Town: <\/strong>Jat<br><strong>Active case:<\/strong> 90","<strong>City/ Town: <\/strong>Azor<br><strong>Active case:<\/strong> 20","<strong>City/ Town: <\/strong>Beit Jann<br><strong>Active case:<\/strong> 173","<strong>City/ Town: <\/strong>Efrat<br><strong>Active case:<\/strong> 15","<strong>City/ Town: <\/strong>Majdal Shams<br><strong>Active case:<\/strong> 23","<strong>City/ Town: <\/strong>Basma<br><strong>Active case:<\/strong> 16","<strong>City/ Town: <\/strong>Kafr Yasif<br><strong>Active case:<\/strong> 18","<strong>City/ Town: <\/strong>Deir Hanna<br><strong>Active case:<\/strong> 33","<strong>City/ Town: <\/strong>Daburiyya<br><strong>Active case:<\/strong> 35","<strong>City/ Town: <\/strong>Jaljulia<br><strong>Active case:<\/strong> 65","<strong>City/ Town: <\/strong>Bu'eine Nujeidat<br><strong>Active case:<\/strong> 26","<strong>City/ Town: <\/strong>Meitar<br><strong>Active case:<\/strong> 16","<strong>City/ Town: <\/strong>Kokhav Yair<br><strong>Active case:<\/strong> 17","<strong>City/ Town: <\/strong>Oranit<br><strong>Active case:<\/strong> 16","<strong>City/ Town: <\/strong>Kokhav Ya'akov<br><strong>Active case:<\/strong> 20","<strong>City/ Town: <\/strong>Mashhad<br><strong>Active case:<\/strong> 18","<strong>City/ Town: <\/strong>Kisra-Sumei<br><strong>Active case:<\/strong> 45","<strong>City/ Town: <\/strong>Bi'ina<br><strong>Active case:<\/strong> 36","<strong>City/ Town: <\/strong>Ilut<br><strong>Active case:<\/strong> 61","<strong>City/ Town: <\/strong>Karnei Shomron<br><strong>Active case:<\/strong> 20","<strong>City/ Town: <\/strong>Rameh<br><strong>Active case:<\/strong> 21","<strong>City/ Town: <\/strong>Abu Ghaush<br><strong>Active case:<\/strong> 43","<strong>City/ Town: <\/strong>Omer<br><strong>Active case:<\/strong> 23","<strong>City/ Town: <\/strong>Sha'ab<br><strong>Active case:<\/strong> 24","<strong>City/ Town: <\/strong>Zemer<br><strong>Active case:<\/strong> 53","<strong>City/ Town: <\/strong>Kfar Habad<br><strong>Active case:<\/strong> 15","<strong>City/ Town: <\/strong>Buqata<br><strong>Active case:<\/strong> 50","<strong>City/ Town: <\/strong>Yanuh-Jat<br><strong>Active case:<\/strong> 31","<strong>City/ Town: <\/strong>Hurfeish<br><strong>Active case:<\/strong> 18","<strong>City/ Town: <\/strong>Julis<br><strong>Active case:<\/strong> 18","<strong>City/ Town: <\/strong>Immanuel<br><strong>Active case:<\/strong> 29","<strong>City/ Town: <\/strong>Muqeible<br><strong>Active case:<\/strong> 16","<strong>City/ Town: <\/strong>Sajur<br><strong>Active case:<\/strong> 23","<strong>City/ Town: <\/strong>Kafr Bara<br><strong>Active case:<\/strong> 57","<strong>City/ Town: <\/strong>Ein Naqquba<br><strong>Active case:<\/strong> 32","<strong>City/ Town: <\/strong>Sallama<br><strong>Active case:<\/strong> 15","<strong>City/ Town: <\/strong>Al-Sayyid<br><strong>Active case:<\/strong> 0","<strong>City/ Town: <\/strong>Uzeir<br><strong>Active case:<\/strong> 31","<strong>City/ Town: <\/strong>Ganei Modi'in<br><strong>Active case:<\/strong> 0","<strong>City/ Town: <\/strong>Mi'ilya<br><strong>Active case:<\/strong> 16","<strong>City/ Town: <\/strong>Ofra<br><strong>Active case:<\/strong> 0","<strong>City/ Town: <\/strong>Sheikh Danun<br><strong>Active case:<\/strong> 22","<strong>City/ Town: <\/strong>Ghajar<br><strong>Active case:<\/strong> 0","<strong>City/ Town: <\/strong>Bir Hadaj<br><strong>Active case:<\/strong> 0","<strong>City/ Town: <\/strong>Elazar<br><strong>Active case:<\/strong> 0","<strong>City/ Town: <\/strong>Neve Daniel<br><strong>Active case:<\/strong> 0","<strong>City/ Town: <\/strong>Qasr al-Sir<br><strong>Active case:<\/strong> 0","<strong>City/ Town: <\/strong>Yakir<br><strong>Active case:<\/strong> 46","<strong>City/ Town: <\/strong>Givat Brenner<br><strong>Active case:<\/strong> 16","<strong>City/ Town: <\/strong>Tifrah<br><strong>Active case:<\/strong> 19","<strong>City/ Town: <\/strong>Abu Talul<br><strong>Active case:<\/strong> 0"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[29.558,33.273],"lng":[34.571,35.783]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<h1 id="age-of-death">Age of death</h1>
+<h1 id="how-i-collect-data">How i collect data?</h1>
+<p>This is interesting since i dont understand Hebrew</p>
+<h2 id="reference">Reference</h2>
+<p><a href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide" class="uri">https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide</a></p>
+<p><a href="https://latitudelongitude.org/il/" class="uri">https://latitudelongitude.org/il/</a></p>
+<p><a href="https://www.geodatos.net/en/coordinates/israel" class="uri">https://www.geodatos.net/en/coordinates/israel</a> <a href="https://latitude.to/articles-by-country/il/israel/69512/kiryat-motzkin" class="uri">https://latitude.to/articles-by-country/il/israel/69512/kiryat-motzkin</a></p>
+<p><a href="http://www.longitude-latitude-maps.com/city/102_153,Pardes+Hanna-Karkur,Haifa,Israel" class="uri">http://www.longitude-latitude-maps.com/city/102_153,Pardes+Hanna-Karkur,Haifa,Israel</a></p>
+<p><a href="https://www.latlong.net/place/rehovot-israel-925.html" class="uri">https://www.latlong.net/place/rehovot-israel-925.html</a></p>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

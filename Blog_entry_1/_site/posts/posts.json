@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/covid_israel/",
+    "title": "How are the Jewish doing?",
+    "description": "Let's dwelve into our first blog by doing a small visualisation exercise of the covid situation in Israel! I intend to make this first blog to be less formal but more friendly, so we can get to know each other better. Let's visualize together!",
+    "author": [
+      {
+        "name": "Hanh Ngo",
+        "url": {}
+      }
+    ],
+    "date": "2020-09-01",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-09-04T21:26:05+07:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to New thing per day",
     "description": "Welcome to our new blog, New thing per day. We hope you enjoy \nreading what we have to say!",
@@ -14,21 +30,5 @@
     "preview": {},
     "last_modified": "2020-09-01T17:32:32+07:00",
     "input_file": {}
-  },
-  {
-    "path": "posts/covid_israel/",
-    "title": "How are the Jewish doing?",
-    "description": "Let's dwelve into our first blog",
-    "author": [
-      {
-        "name": "Hanh Ngo",
-        "url": "https://example.com/norajones"
-      }
-    ],
-    "date": "2020-09-01",
-    "categories": [],
-    "preview": {},
-    "last_modified": "2020-09-04T00:49:19+07:00",
-    "input_file": "covid_israel.utf8.md"
   }
 ]

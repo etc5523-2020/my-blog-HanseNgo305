@@ -1,5 +1,5 @@
 ﻿Area,city_ENG,pop_2019,active_case,confirmed_in_last_7_days,Verified rate added relative to active patients one week ago,confirmed_case_per_100000_person,"Number of tests per 1,000,000 people in 7 days",positive_test rate_last_week, lat , lon 
-ירושלים,Jerusalem,"931,272","2,601","1,279",97%,279,"16,484",8%,31.769,35.216
+ירושלים,Jerusalem,"931,272",2601,"1,279",97%,279,"16,484",8%,31.769,35.216
 תל אביב - יפו,Tel Aviv-Jaffa,"456,409",661,292,79%,145,"13,308",5%,32.05,34.752
 חיפה,Haifa,"273,425",440,238,118%,161,"16,549",5%,32.818,34.989
 פתח תקווה,Petah Tiqwa,"245,533",410,194,90%,167,"14,291",6%,32.087,34.887

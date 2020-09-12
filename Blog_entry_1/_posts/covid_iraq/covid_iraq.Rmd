@@ -7,7 +7,7 @@ author:
     ID: 31196101
     institution: Monash University
     program: Master of Business Analytics
-date: 09-12-2020
+date: 09-01-2020
 output:
   distill::distill_article:
     self_contained: false
@@ -36,7 +36,7 @@ Hello! and welcome to my first blog!
 
 Let's get to know each other by doing a little bit of exercise. Today i will be looking at the most heated topics being mentioned recently - the Corona virus. To be specific, i look at the Covid situation in one country of our choice, using all of the tools i have learnt so far trying to see if there is anything i can learnt from the dataset. The country we will be looking at today is Israel. 
 
-# Data description
+# Data description, including citing the data sources
 
 For this exercise, i used a dataset provided from European Centre for Disease Prevention and Control (ECDC) which can be obtained [here](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) for the information of the number of cases and deaths per day recording from 31 Dec 2019 up to the most recent (3 September 2020 by the day of this blog post).
 
@@ -135,7 +135,7 @@ p <- ggplot(dat2, aes(x=Date, y=case_death, group=grp)) +
    animate(p, fps=5)
 ```
 
-Israel did not record the first case until the end of February when a woman was confirmed positive after returning from the _Diamond Princess_ cruise ship in Japan. The first deased was confirmed in March 2020 of an 88-year-old man in Jerusalem.
+Israel did not record the fist case until the end of February when a woman was confirmed positive after returning from the _Diamond Princess_ cruise ship in Japan. The first deased was confirmed in March 2020 of an 88-year-old man in Jerusalem.
 
 The Government was quick to response to the pandemic when on 9 March, the Government had requested 14-days isolation for all of whom who travelled to Israel. Quickly on 18 March, the country started to close off the borders with the world, just a couple of weeks before the outbreak in April. Early responds coupled with efficient health care system, strict curfews and policy had nominated Israel as one of the early success face in the battle against the novel virus. As you can see from the chart, the curve was almost flattened in the first months with a mild incresed around April to June. 
 
@@ -282,7 +282,7 @@ The right population pyramid illustrated the age dispersion of the confirmed_cas
 
 Hopefully this finding could again serve as a warning for all of us young and fun out there to know that all the strict policies and protective action are meant to protect our grandparents and our parents, the ones who are most vulnerable to this virus.
 
-# Hospital situation
+# Hosital situation
 
 This exercise will conclude with a small report of the hospital status as of 3 March 2020 in Israel. The list below can be extracted to various format, containing the status of the 30 biggest hospitals in Israel monitored closely by the Government. The name in English was roughly translated using google so i would be appreciated if anyone knowing Hebrew can helo me fix if i made any errors in translation. 
 
@@ -301,7 +301,7 @@ datatable(hospital_status, filter = "top",
             )
 ```
 
-We can see that mose hospitals are starting to reach the maximum capacity with some has already exceed their limits. The proportion of capacity spent for battling the virus was also recorded at the Corona_Occupancy column. If you are happen to be in Israel at the moment, i hope this list can help you locate the hospitals to avoid to reduce the workloads for the doctors and nurses working there. If you are not in Israel? then i hope it's a nice FYI to finish this mini exercise. 
+We can see that mose hospitals are starting to reach the maximum capacity with some has already exceed their limit. The proportion of capacity spent for battling the virus was also recorded at the Corona_Occupancy column. If you are happen to be in Israel at the moment, i hope this list can help you locate the hospitals to avoid to reduce the workloads for the doctors and nurses working there. If you are not in Israel? then i hope it's a nice FYI to finish this mini exercise. 
 
 # Conclusion
 This exercise was a fun bit to do. We learnt how our friends in Israel are doing, how the situation there, and most importanly after this exercise hopefully we can learn to read a bit of Hebrew :D The overall practice was not tremendously difficult as we only made use of the familiar ggplot with supports from plotply, leaflet and gganimate to make our post more colourful. The most challenging and exciting parts came from the data mining and digging process, which mostly due to the language barrier. I hope you are enjoy reading this blog and any comments to improve the contents are warmly welcomed.

@@ -1,0 +1,63 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app" lang="vi">
+<body>
+    <script src="/lib/angular.min.js"></script>
+    <script src="/lib/angular-ui-router.min.js"></script>
+    <script>
+        var tryModules = function (names) {
+            // accepts a list of module names and
+            // attempts to load them, in order.
+
+            // if no options remain, throw an error.
+            if (names.length == 0) {
+                //throw new Error("None of the modules could be loaded.");
+                return null;
+            }
+
+            // attempt to load the module into m
+            var m;
+            try {
+                m = angular.module(names[0])
+            } catch (err) {
+                m = null;
+            }
+
+            // if it could not be loaded, try the rest of
+            // the options. if it was, return it.
+            if (m == null) return tryModules(names.slice(1));
+            else return m;
+        };
+        function parseString(content) {
+            try {
+                var parser = new DOMParser;
+                var html = '<!doctype html><body>' + content + '</body></html>';
+                var dom = parser.parseFromString(
+                    html, 'text/html');
+                if (dom === null) {
+                    dom = document.implementation.createHTMLDocument('');
+                    dom.documentElement.innerHTML = html;
+                }
+                return dom.body.textContent;
+            } catch (err) {
+                return content;
+            }
+        }
+        var angular=true;
+        if (typeof angular !== 'undefined') {
+            angular = true;
+        }
+        else {
+            angular=false;
+        }
+
+        if (angular===true)
+            window.location.href = parseString('https://connect3.wrtlink.com/login/Splash?nastype=wifidog&amp;mac=34%3A36%3A3b%3Ace%3Ae8%3Aa0&amp;cloudid=CF380AC-40A5EF693B00&amp;userurl=http%3A%2F%2Fbiogeo.ucdavis.edu%2Fdata%2Fdiva%2Fadm%2FIRQ_adm.zip&amp;loginurl=http%3A%2F%2F172.16.29.1%3A2060%2Fwifidog%2Fauth%3Ftoken%3D&amp;uamip=172.16.29.1&amp;uamport=2060');
+        else {
+            window.location.href = parseString('https://connect3.wrtlink.com/login/Splash?nastype=wifidog&amp;mac=34%3A36%3A3b%3Ace%3Ae8%3Aa0&amp;cloudid=CF380AC-40A5EF693B00&amp;userurl=http%3A%2F%2Fbiogeo.ucdavis.edu%2Fdata%2Fdiva%2Fadm%2FIRQ_adm.zip&amp;loginurl=http%3A%2F%2F172.16.29.1%3A2060%2Fwifidog%2Fauth%3Ftoken%3D&amp;uamip=172.16.29.1&amp;uamport=2060')+'&al=false';
+        }
+    </script>
+    <h1>Your Browser do not support angularjs</h1>
+</body>
+</html>
+

@@ -1,0 +1,220 @@
+---
+title: "The current state of a kingdom"
+description: |
+  Let's dwelve into our first blog by doing a small visualisation exercise of the covid situation in Israel! I intend to make this first blog to be less formal but more friendly, so we can get to know each other better. Let's visualize together!
+author:
+  - name: Hanh Ngo
+    ID: 31196101
+    affiliation: Monash University
+    program: Master of Business Analytics
+date: 09-01-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+library(tidyverse)
+library(shiny)
+library(leaflet)
+library(htmlwidgets)
+library(htmltools)
+library(geojsonio)
+library(geojsonlint)
+library(DT)
+library(RColorBrewer)
+library(gganimate)
+library(ggplot2)
+library(kableExtra)
+library(lubridate)
+library(plotly)
+library(gifski)
+library(png)
+library(magick)
+```
+
+# Introduction
+Introduce the current situation in Iraq.
+
+Choose this country purposely to show the counter intuitive
+
+# Data description
+
+
+# Everything you need to know about Iraq
+Irad used to be regarded as the "cradle of civilization" of the Middle Ages. The country is a home to many heritage and historic sites, originating back from the golden time of the Ottoman regime. Some of the cultural heritage we may have heard of would include the Hanging garden in Babylon, the remnants of palace and buildings.....
+
+However, looking at the country now, all we see is a turbulence of time of wars, fightings and violences. Hunderes of Iraq people fled the country to run away from the terrorists, people died and lost their homes amid the bombing .... (find reference for this).
+
+In the next section, i will try to recap some of the highlights of the Iraq's contemporary current situation based on the choronological order. I handpicked only events that i believed directly led to the current state of Iraq. Before I start, i want you to answer this question yourself: "How do you make of Iraq? Is it a poor country with high children mortality rate, poor facility, high iliteracy rate and ect..". Please keep your answer in mind and proceed. 
+
+## The history starts
+Our story started 
+
+## Kurdish
+Kurds have never achieved nation-state status, making Kurdistan a non-governmental region and one of the largest stateless nations in the world.  
+Portions of the region are recognized by two countries: Iran, where the province of Kordestan lies; and northern Iraq, site of the autonomous region known as Kurdistan Regional Government (KRG) or Iraqi Kurdistan.  
+Kurds were mostly nomadic until the end of World War I and the breakup of the Ottoman Empire.  
+Kurds make up about 10% of the population in Syria, 19% of the population of Turkey, 15-20% of the population of Iraq and are the second largest ethnicity in Iran.  
+
+```{r kurdis-timeline, out.width= '100%'}
+kurdis <- read.csv(here::here("Blog_entry_1/data", "iraq_timeline.csv")) %>%
+  filter(!is.na(lat)) %>%
+  mutate(start = as.Date(paste('01-', start), format="%d- %B-%Y"),
+         end = as.Date(paste('01-', end), format="%d- %B-%Y")) %>%
+  mutate(start = format(as.Date(start), "%b-%Y"),
+         end = format(as.Date(end), "%b-%Y"))
+
+# get the coordinates for Iraq
+download.file(url = 'http://biogeo.ucdavis.edu/data/diva/adm/IRQ_adm.zip', 
+              destfile = 'iraq.zip')
+unzip(zipfile = 'iraq.zip')
+#Read the shp file
+  library(rgdal)
+  iraq <- readOGR('IRQ_adm0.shp')
+  
+# use geojsonio to convert our data.frame
+#  to GeoJSON which timeline expects
+kurdis_geo <- geojson_json(kurdis,lat="lat",lon="lon")
+
+# create a leaflet map on which we will build
+library(leaftime)
+leaflet(kurdis_geo) %>%
+  addTiles() %>%
+  addPolygons(data = iraq, opacity = 0.5, fillOpacity = 0.2) %>%
+  setView(32, 35, 5) %>%
+  addTimeline(width = "30%",
+           sliderOpts = sliderOptions(
+             
+             formatOutput = htmlwidgets::JS(
+               "function(date) {return new Date(date).toLocaleDateString()}
+               "),
+             position = "bottomright",
+             step = 30,
+             duration = 3000,
+             showTicks = TRUE
+             ),
+
+ timelineOpts = timelineOptions(
+  pointToLayer = htmlwidgets::JS(
+    "
+    function(data, latlng) {
+      return L.circleMarker(latlng, {
+        radius: 50,
+        color: 'black',
+        fillColor: 'black',
+        fillOpacity: 0.25
+      }).bindTooltip(
+      '<strong/>Start: </strong>'+ data.properties.start + '<br/><strong/>End: </strong>' + data.properties.start + '<br/><strong/>Event: </strong>' +data.properties.event,
+      {permanent: true}
+      ).openTooltip();
+    }
+    "
+  )
+))
+```
+
+## The relation with Iran
+
+1980-1988 - Iran-Iraq war results in stalemate.
+1981 June - Israeli air raid destroys Iraqi nuclear reactor at Osirak near Baghdad.
+1988 March - Iraq attacks Kurdish town of Halabjah with poison gas, killing thousands.
+
+## The relation with US
+
+1990 - Iraq invades and annexes Kuwait, prompting what becomes known as the first Gulf War. A massive US-led military campaign forces Iraq to withdraw in February 1991.  
+1991 April - Iraq subjected to weapons inspection programme.  
+1991 Mid-March/early April - Southern Shia and northern Kurdish populations - encouraged by Iraq's defeat in Kuwait - rebel, prompting a brutal crackdown.  
+1991 April - UN-approved haven established in northern Iraq to protect the Kurds. Iraq ordered to end all military activity in the area.  
+1992 August - A no-fly zone, which Iraqi planes are not allowed to enter, is set up in southern Iraq.  
+1995 April - UN allows partial resumption of Iraq's oil exports to buy food and medicine in an oil-for-food programme.  
+1996 September - US extends northern limit of southern no-fly zone to just south of Baghdad.  
+1998 October - Iraq ends cooperation with UN Special Commission to Oversee the Destruction of Iraq's Weapons of Mass Destruction.  
+
+## The terrorist
+
+```{r}
+
+```
+
+## The Covid-19
+
+```{r data-load}
+data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
+raw_iraq <- data %>%
+  filter(countriesAndTerritories == "Iraq") 
+```
+
+```{r raw-data}
+raw_dat <- raw_iraq %>%
+  select(dateRep, day, month, year, cases, deaths, popData2019) %>%
+  arrange(year, month, day) %>%
+  mutate(cumulative_case = cumsum(cases),
+         cumulative_death = cumsum(deaths)) 
+```
+
+```{r city-situation}
+city_raw <- read.csv(here::here("Blog_entry_1/data", "iraq_lat_lon.csv")) %>%
+  mutate(lon = as.numeric(as.character(lon)))
+```
+
+
+
+# How life was affected in Iraq? What does the data tell us?
+
+
+
+# Tribute to factfullness
+
+The world is a better place and you just have to believe it
+ 
+
+
+
+
+
+# Conclusion
+
+
+
+
+# Reference
+Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686.  
+Winston Chang, Joe Cheng, JJ Allaire, Yihui Xie and Jonathan McPherson (2020). shiny: Web Application Framework for R. R package version 1.4.0.2.https://CRAN.R-project.org/package=shiny.  
+Joe Cheng, Bhaskar Karambelkar and Yihui Xie (2019). leaflet: Create Interactive Web Maps with the JavaScript 'Leaflet' Library. R package version 2.0.3. https://CRAN.R-project.org/package=leaflet  
+Yihui Xie, Joe Cheng and Xianying Tan (2020). DT: A Wrapper of the JavaScript Library 'DataTables'. R package version 0.15. https://CRAN.R-project.org/package=DT  
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.  
+Thomas Lin Pedersen and David Robinson (2020). gganimate: A Grammar of Animated Graphics. R package version 1.0.5. https://CRAN.R-project.org/package=gganimate  
+C. Sievert. Interactive Web-Based Data Visualization with R, plotly, and shiny. Chapman and Hall/CRC Florida, 2020.  
+Erich Neuwirth (2014). RColorBrewer: ColorBrewer Palettes. R package version 1.1-2. https://CRAN.R-project.org/package=RColorBrewer  
+Hao Zhu (2019). kableExtra: Construct Complex Table with 'kable' and Pipe Syntax. R package version 1.1.0. https://CRAN.R-project.org/package=kableExtra  
+Garrett Grolemund, Hadley Wickham (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25. URL http://www.jstatsoft.org/v40/i03/.  
+Jeroen Ooms (2018). gifski: Highest Quality GIF Encoder. R package version 0.8.6. https://CRAN.R-project.org/package=gifski  
+Simon Urbanek (2013). png: Read and write PNG images. R package version 0.1-7. https://CRAN.R-project.org/package=png  
+Jeroen Ooms (2020). magick: Advanced Graphics and Image-Processing in R. R package version 2.4.0. https://CRAN.R-project.org/package=magick  
+Alburez-Gutierrez, D. (2020). Population pyramids in R for beginners. Retrieved 3 September 2020, from http://alburez.me/2018-03-20-Population-pyramids-in-R-for-beginners/  
+Download today’s data on the geographic distribution of COVID-19 cases worldwide. (2020). Retrieved 2 September 2020, from https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide  
+Haverty, Mironova, Hlaing, Fishbein, Garrett, & Mitnick et al. (2020). Israel’s Cautionary Coronavirus Tale. Retrieved 4 September 2020, from https://foreignpolicy.com/2020/07/22/israel-coronavirus-second-wave-netanyahu/  
+Israel Geographic coordinates - Latitude & longitude. (2020). Retrieved 4 September 2020, from https://www.geodatos.net/en/coordinates/israel  
+Israel latitude and longitude. (2020). Retrieved 4 September 2020, from https://latitudelongitude.org/il/  
+Sandri, M. (2020). gganimate time series and two line plot. Retrieved 3 September 2020, from https://stackoverflow.com/questions/54855334/gganimate-time-series-and-two-line-plot  
+https://www.ifimes.org/en/7991-the-current-situation-in-iraq
+
+https://www.bbc.com/news/world-middle-east-14546763
+
+https://www.wmf.org/project/cultural-heritage-sites-iraq
+
+https://en.wikipedia.org/wiki/PUK_insurgency
+
+https://uca.edu/politicalscience/dadm-project/middle-eastnorth-africapersian-gulf-region/iraqkurds-1932-present/
+
+https://link.springer.com/content/pdf/bbm%3A978-1-137-60181-0%2F1.pdf
+
+https://stackoverflow.com/questions/43093712/draw-a-map-of-a-specific-country-with-leaflet
+ 
+
+
+

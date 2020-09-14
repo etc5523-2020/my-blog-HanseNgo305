@@ -234,7 +234,7 @@ ggplot(aes(x = age_group, y = prop, fill = gender)) +
   theme(legend.position = "none")
 ```
 
-```{r case-age}
+```{r case-age, layout="l-body-outset", preview = TRUE}
 # Percentage from gov databoard for 2 Sep 2020
 age_case <- tibble::tribble(
   ~age_group, ~gender, ~percentage,

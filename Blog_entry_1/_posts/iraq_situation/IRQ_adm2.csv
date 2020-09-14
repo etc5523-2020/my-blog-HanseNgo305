@@ -1,0 +1,103 @@
+"OBJECTID","ID_0","ISO","NAME_0","ID_1","NAME_1","ID_2","NAME_2","TYPE_2","ENGTYPE_2","NL_NAME_2","VARNAME_2"
+1,108,"IRQ","Iraq",1,"Al-Anbar",1,"Abu Ghraib",NA,NA,NA,NA
+2,108,"IRQ","Iraq",1,"Al-Anbar",2,"Al Fallujah",NA,NA,NA,NA
+3,108,"IRQ","Iraq",1,"Al-Anbar",3,"Al Haditha",NA,NA,NA,NA
+4,108,"IRQ","Iraq",1,"Al-Anbar",4,"Al Qa'im",NA,NA,NA,NA
+5,108,"IRQ","Iraq",1,"Al-Anbar",5,"Anah",NA,NA,NA,NA
+6,108,"IRQ","Iraq",1,"Al-Anbar",6,"Ar Ramadi",NA,NA,NA,NA
+7,108,"IRQ","Iraq",1,"Al-Anbar",7,"Ar Rutbah",NA,NA,NA,NA
+8,108,"IRQ","Iraq",1,"Al-Anbar",8,"Hit",NA,NA,NA,NA
+9,108,"IRQ","Iraq",1,"Al-Anbar",9,"Kadhimiya",NA,NA,NA,NA
+10,108,"IRQ","Iraq",2,"Al-Basrah",10,"Abu al Khasib",NA,NA,NA,NA
+11,108,"IRQ","Iraq",2,"Al-Basrah",11,"Al Faw",NA,NA,NA,NA
+12,108,"IRQ","Iraq",2,"Al-Basrah",12,"Al Madiana",NA,NA,NA,NA
+13,108,"IRQ","Iraq",2,"Al-Basrah",13,"Al Qurnah",NA,NA,NA,NA
+14,108,"IRQ","Iraq",2,"Al-Basrah",14,"Al Zubair",NA,NA,NA,NA
+15,108,"IRQ","Iraq",2,"Al-Basrah",15,"Basrah",NA,NA,NA,NA
+16,108,"IRQ","Iraq",2,"Al-Basrah",16,"Shatt Al Arab",NA,NA,NA,NA
+17,108,"IRQ","Iraq",3,"Al-Muthannia",17,"Al Khithir",NA,NA,NA,NA
+18,108,"IRQ","Iraq",3,"Al-Muthannia",18,"As Salman",NA,NA,NA,NA
+19,108,"IRQ","Iraq",3,"Al-Muthannia",19,"As Samawah",NA,NA,NA,NA
+20,108,"IRQ","Iraq",3,"Al-Muthannia",20,"Rumaitha",NA,NA,NA,NA
+21,108,"IRQ","Iraq",4,"Al-Qadisiyah",21,"Ad Diwaniyah",NA,NA,NA,NA
+22,108,"IRQ","Iraq",4,"Al-Qadisiyah",22,"Afak",NA,NA,NA,NA
+23,108,"IRQ","Iraq",4,"Al-Qadisiyah",23,"Al Hamza",NA,NA,NA,NA
+24,108,"IRQ","Iraq",4,"Al-Qadisiyah",24,"Shamiya",NA,NA,NA,NA
+25,108,"IRQ","Iraq",5,"An-Najaf",25,"Al Kufa",NA,NA,NA,NA
+26,108,"IRQ","Iraq",5,"An-Najaf",26,"Al Manathera",NA,NA,NA,NA
+27,108,"IRQ","Iraq",5,"An-Najaf",27,"Najaf",NA,NA,NA,NA
+28,108,"IRQ","Iraq",6,"Arbil",28,"Arbil",NA,NA,NA,NA
+29,108,"IRQ","Iraq",6,"Arbil",29,"Choman",NA,NA,NA,NA
+30,108,"IRQ","Iraq",6,"Arbil",30,"Koisnjaq",NA,NA,NA,NA
+31,108,"IRQ","Iraq",6,"Arbil",31,"Makhmur",NA,NA,NA,NA
+32,108,"IRQ","Iraq",6,"Arbil",32,"Mergasur",NA,NA,NA,NA
+33,108,"IRQ","Iraq",6,"Arbil",33,"Shaqlawa",NA,NA,NA,NA
+34,108,"IRQ","Iraq",6,"Arbil",34,"Soran",NA,NA,NA,NA
+35,108,"IRQ","Iraq",7,"As-Sulaymaniyah",35,"Chamchamal",NA,NA,NA,NA
+36,108,"IRQ","Iraq",7,"As-Sulaymaniyah",36,"Darbandokeh",NA,NA,NA,NA
+37,108,"IRQ","Iraq",7,"As-Sulaymaniyah",37,"Dukan",NA,NA,NA,NA
+38,108,"IRQ","Iraq",7,"As-Sulaymaniyah",38,"Halabja",NA,NA,NA,NA
+39,108,"IRQ","Iraq",7,"As-Sulaymaniyah",39,"Kalar",NA,NA,NA,NA
+40,108,"IRQ","Iraq",7,"As-Sulaymaniyah",40,"Penjwin",NA,NA,NA,NA
+41,108,"IRQ","Iraq",7,"As-Sulaymaniyah",41,"Pshdar",NA,NA,NA,NA
+42,108,"IRQ","Iraq",7,"As-Sulaymaniyah",42,"Rania",NA,NA,NA,NA
+43,108,"IRQ","Iraq",7,"As-Sulaymaniyah",43,"Sharbazher",NA,NA,NA,NA
+44,108,"IRQ","Iraq",7,"As-Sulaymaniyah",44,"Sulaymaniya",NA,NA,NA,NA
+45,108,"IRQ","Iraq",8,"At-Ta'mim",45,"Daquq",NA,NA,NA,NA
+46,108,"IRQ","Iraq",8,"At-Ta'mim",46,"Dibis",NA,NA,NA,NA
+47,108,"IRQ","Iraq",8,"At-Ta'mim",47,"Haweeja",NA,NA,NA,NA
+48,108,"IRQ","Iraq",8,"At-Ta'mim",48,"Kirkuk",NA,NA,NA,NA
+49,108,"IRQ","Iraq",9,"Babil",49,"Al-Mada'in",NA,NA,NA,NA
+50,108,"IRQ","Iraq",9,"Babil",50,"Al Hashimiyah",NA,NA,NA,NA
+51,108,"IRQ","Iraq",9,"Babil",51,"Al Hillah",NA,NA,NA,NA
+52,108,"IRQ","Iraq",9,"Babil",52,"Al Mahawil",NA,NA,NA,NA
+53,108,"IRQ","Iraq",9,"Babil",53,"Al Misiab",NA,NA,NA,NA
+54,108,"IRQ","Iraq",9,"Babil",54,"Mahmudiya",NA,NA,NA,NA
+55,108,"IRQ","Iraq",10,"Baghdad",55,"Adhamiya",NA,NA,NA,NA
+56,108,"IRQ","Iraq",11,"Dhi-Qar",56,"An Nasiriyah",NA,NA,NA,NA
+57,108,"IRQ","Iraq",11,"Dhi-Qar",57,"Chibayish",NA,NA,NA,NA
+58,108,"IRQ","Iraq",11,"Dhi-Qar",58,"Refai",NA,NA,NA,NA
+59,108,"IRQ","Iraq",11,"Dhi-Qar",59,"Shatrah",NA,NA,NA,NA
+60,108,"IRQ","Iraq",11,"Dhi-Qar",60,"Suq ash Shuyukh",NA,NA,NA,NA
+61,108,"IRQ","Iraq",12,"Dihok",61,"Amedi",NA,NA,NA,NA
+62,108,"IRQ","Iraq",12,"Dihok",62,"Dahuk",NA,NA,NA,NA
+63,108,"IRQ","Iraq",12,"Dihok",63,"Simele",NA,NA,NA,NA
+64,108,"IRQ","Iraq",12,"Dihok",64,"Zakho",NA,NA,NA,NA
+65,108,"IRQ","Iraq",13,"Diyala",65,"Al Khalis",NA,NA,NA,NA
+66,108,"IRQ","Iraq",13,"Diyala",66,"Al Miqdadiyah",NA,NA,NA,NA
+67,108,"IRQ","Iraq",13,"Diyala",67,"Ba`qubah",NA,NA,NA,NA
+68,108,"IRQ","Iraq",13,"Diyala",68,"Balad Ruz",NA,NA,NA,NA
+69,108,"IRQ","Iraq",13,"Diyala",69,"Khanaqin",NA,NA,NA,NA
+70,108,"IRQ","Iraq",13,"Diyala",70,"Kifri",NA,NA,NA,NA
+71,108,"IRQ","Iraq",14,"Karbala'",71,"Ain Al Tamur",NA,NA,NA,NA
+72,108,"IRQ","Iraq",14,"Karbala'",72,"Al Jadwal al Gharbi",NA,NA,NA,NA
+73,108,"IRQ","Iraq",14,"Karbala'",73,"Karbala",NA,NA,NA,NA
+74,108,"IRQ","Iraq",15,"Maysan",74,"Al Amarah",NA,NA,NA,NA
+75,108,"IRQ","Iraq",15,"Maysan",75,"Al Kahla",NA,NA,NA,NA
+76,108,"IRQ","Iraq",15,"Maysan",76,"Al Miamona",NA,NA,NA,NA
+77,108,"IRQ","Iraq",15,"Maysan",77,"Al Mijar al Kabir",NA,NA,NA,NA
+78,108,"IRQ","Iraq",15,"Maysan",78,"Ali al Gharbi",NA,NA,NA,NA
+79,108,"IRQ","Iraq",15,"Maysan",79,"Qal`at Salih",NA,NA,NA,NA
+80,108,"IRQ","Iraq",16,"Ninawa",80,"Akre",NA,NA,NA,NA
+81,108,"IRQ","Iraq",16,"Ninawa",81,"Al Ba'aj",NA,NA,NA,NA
+82,108,"IRQ","Iraq",16,"Ninawa",82,"Al Hamdaniyah",NA,NA,NA,NA
+83,108,"IRQ","Iraq",16,"Ninawa",83,"Al Shikhan",NA,NA,NA,NA
+84,108,"IRQ","Iraq",16,"Ninawa",84,"Hatra",NA,NA,NA,NA
+85,108,"IRQ","Iraq",16,"Ninawa",85,"Mosul",NA,NA,NA,NA
+86,108,"IRQ","Iraq",16,"Ninawa",86,"Shekhan",NA,NA,NA,NA
+87,108,"IRQ","Iraq",16,"Ninawa",87,"Sinjar",NA,NA,NA,NA
+88,108,"IRQ","Iraq",16,"Ninawa",88,"Talafar",NA,NA,NA,NA
+89,108,"IRQ","Iraq",16,"Ninawa",89,"Tilkef",NA,NA,NA,NA
+90,108,"IRQ","Iraq",17,"Sala ad-Din",90,"Al-Faris",NA,NA,NA,NA
+91,108,"IRQ","Iraq",17,"Sala ad-Din",91,"Al Door",NA,NA,NA,NA
+92,108,"IRQ","Iraq",17,"Sala ad-Din",92,"Al Shirkat",NA,NA,NA,NA
+93,108,"IRQ","Iraq",17,"Sala ad-Din",93,"Balad",NA,NA,NA,NA
+94,108,"IRQ","Iraq",17,"Sala ad-Din",94,"Bayji",NA,NA,NA,NA
+95,108,"IRQ","Iraq",17,"Sala ad-Din",95,"Samarra",NA,NA,NA,NA
+96,108,"IRQ","Iraq",17,"Sala ad-Din",96,"Tikrit",NA,NA,NA,NA
+97,108,"IRQ","Iraq",17,"Sala ad-Din",97,"Touz Hourmato",NA,NA,NA,NA
+98,108,"IRQ","Iraq",18,"Wasit",98,"Al Hayy",NA,NA,NA,NA
+99,108,"IRQ","Iraq",18,"Wasit",99,"Al Kut",NA,NA,NA,NA
+100,108,"IRQ","Iraq",18,"Wasit",100,"Al Noamania",NA,NA,NA,NA
+101,108,"IRQ","Iraq",18,"Wasit",101,"As Suwayrah",NA,NA,NA,NA
+102,108,"IRQ","Iraq",18,"Wasit",102,"Badrah",NA,NA,NA,NA

@@ -7,7 +7,7 @@ author:
     ID: 31196101
     affiliation: Monash University
     program: Master of Business Analytics
-date: 09-01-2020
+date: 09-12-2020
 output:
   distill::distill_article:
     self_contained: false
@@ -73,8 +73,8 @@ download.file(url = 'http://biogeo.ucdavis.edu/data/diva/adm/IRQ_adm.zip',
               destfile = 'iraq.zip')
 unzip(zipfile = 'iraq.zip')
 #Read the shp file
-  library(rgdal)
-  iraq <- readOGR('IRQ_adm0.shp')
+library(rgdal)
+iraq <- readOGR('IRQ_adm0.shp')
   
 # use geojsonio to convert our data.frame
 #  to GeoJSON which timeline expects
@@ -110,6 +110,67 @@ leaflet(kurdis_geo) %>%
       }).bindTooltip(
       '<strong/>Start: </strong>'+ data.properties.start + '<br/><strong/>End: </strong>' + data.properties.start + '<br/><strong/>Event: </strong>' +data.properties.event,
       {permanent: true}
+      ).openTooltip();
+    }
+    "
+  )
+))
+```
+
+
+## Terrorists
+
+```{r}
+terror <- read.csv(here::here("Blog_entry_1/data", "iraq_terrorists.csv")) %>%
+  mutate(start = as.Date(as.character(start), format = "%d-%b-%y"),
+         end = as.Date(as.character(end), format = "%d-%b-%y"))
+
+# Choose terrorist - related event only for the sake of this report
+terror <- terror %>%
+  filter(event_type %in% c("Battles", "Explosions/Remote violence", "Violence against civilians"))
+
+glimpse(terror)
+```
+
+Variable explanation:  
+-
+
+```{r violences}
+violence_geo <- geojson_json(terror,lat="latitude",lon="longitude")
+
+# create a leaflet map on which we will build
+library(leaftime)
+leaflet(violence_geo) %>%
+  addTiles() %>%
+  addPolygons(data = iraq, opacity = 0.25, fillOpacity = 0.2, color = "pink") %>%
+  setView(32, 35, 5) %>%
+  addTimeline(sliderOpts = sliderOptions(
+    formatOutput = htmlwidgets::JS(
+               "function(date) {return new Date(date).toLocaleDateString()}
+               "),
+             position = "bottomleft",
+             step = 10000,
+             duration = 100000,
+             showTicks = TRUE
+             ),
+
+ timelineOpts = timelineOptions(
+  pointToLayer = htmlwidgets::JS(
+    "
+    function(data, latlng) {
+      return L.circleMarker(latlng, {
+        radius: 50,
+        color: 'red',
+        fillColor: 'red',
+        fillOpacity: 0.25
+      }).bindTooltip(
+      '<strong/>Start: </strong>'+ data.properties.start + 
+      '<br/><strong/>Event: </strong>' +data.properties.event_type + 
+      '<br/><strong/>Sub-event: </strong>' +data.properties.sub_event_type +
+      '<br/><strong/>Actor1: </strong>' +data.properties.actor1 +
+      '<br/><strong/>Actor2: </strong>' +data.properties.actor2 +
+      '<br/><strong/>Location: </strong>' +data.properties.location,
+      {permanent: false},
       ).openTooltip();
     }
     "
@@ -216,5 +277,7 @@ https://link.springer.com/content/pdf/bbm%3A978-1-137-60181-0%2F1.pdf
 https://stackoverflow.com/questions/43093712/draw-a-map-of-a-specific-country-with-leaflet
  
 
+“ACLED. (2030). “Armed Conflict Location & Event Data Project (ACLED) Codebook, 2020.””
 
+“Raleigh, Clionadh, Andrew Linke, Håvard Hegre and Joakim Karlsen. (2010). “Introducing ACLED-Armed Conflict Location and Event Data.” Journal of Peace Research 47(5) 651-660.”
 

@@ -37,7 +37,7 @@ library(magick)
 ```
 
 # Introduction
-Introduce the current situation in Iraq.
+Hello! and welcome to the second blog post of "New things per day" series. In this blog post, we will explore the 
 
 Choose this country purposely to show the counter intuitive
 
@@ -47,7 +47,7 @@ Choose this country purposely to show the counter intuitive
 # Everything you need to know about Iraq
 Irad used to be regarded as the "cradle of civilization" of the Middle Ages. The country is a home to many heritage and historic sites, originating back from the golden time of the Ottoman regime. Some of the cultural heritage we may have heard of would include the Hanging garden in Babylon, the remnants of palace and buildings.....
 
-However, looking at the country now, all we see is a turbulence of time of wars, fightings and violences. Hunderes of Iraq people fled the country to run away from the terrorists, people died and lost their homes amid the bombing .... (find reference for this).
+However, looking at the country now, all we see is a turbulence of time of wars, fightings and violences. Hundreds of Iraq people fled the country to run away from the terrorists, people died and lost their homes amid the bombing .... (find reference for this).
 
 In the next section, i will try to recap some of the highlights of the Iraq's contemporary current situation based on the choronological order. I handpicked only events that i believed directly led to the current state of Iraq. Before I start, i want you to answer this question yourself: "How do you make of Iraq? Is it a poor country with high children mortality rate, poor facility, high iliteracy rate and ect..". Please keep your answer in mind and proceed. 
 
@@ -61,60 +61,7 @@ Kurds were mostly nomadic until the end of World War I and the breakup of the Ot
 Kurds make up about 10% of the population in Syria, 19% of the population of Turkey, 15-20% of the population of Iraq and are the second largest ethnicity in Iran.  
 
 ```{r kurdis-timeline, out.width= '100%'}
-kurdis <- read.csv(here::here("Blog_entry_1/data", "iraq_timeline.csv")) %>%
-  filter(!is.na(lat)) %>%
-  mutate(start = as.Date(paste('01-', start), format="%d- %B-%Y"),
-         end = as.Date(paste('01-', end), format="%d- %B-%Y")) %>%
-  mutate(start = format(as.Date(start), "%b-%Y"),
-         end = format(as.Date(end), "%b-%Y"))
 
-# get the coordinates for Iraq
-download.file(url = 'http://biogeo.ucdavis.edu/data/diva/adm/IRQ_adm.zip', 
-              destfile = 'iraq.zip')
-unzip(zipfile = 'iraq.zip')
-#Read the shp file
-library(rgdal)
-iraq <- readOGR('IRQ_adm0.shp')
-  
-# use geojsonio to convert our data.frame
-#  to GeoJSON which timeline expects
-kurdis_geo <- geojson_json(kurdis,lat="lat",lon="lon")
-
-# create a leaflet map on which we will build
-library(leaftime)
-leaflet(kurdis_geo) %>%
-  addTiles() %>%
-  addPolygons(data = iraq, opacity = 0.5, fillOpacity = 0.2) %>%
-  setView(32, 35, 5) %>%
-  addTimeline(width = "30%",
-           sliderOpts = sliderOptions(
-             
-             formatOutput = htmlwidgets::JS(
-               "function(date) {return new Date(date).toLocaleDateString()}
-               "),
-             position = "bottomright",
-             step = 30,
-             duration = 3000,
-             showTicks = TRUE
-             ),
-
- timelineOpts = timelineOptions(
-  pointToLayer = htmlwidgets::JS(
-    "
-    function(data, latlng) {
-      return L.circleMarker(latlng, {
-        radius: 50,
-        color: 'black',
-        fillColor: 'black',
-        fillOpacity: 0.25
-      }).bindTooltip(
-      '<strong/>Start: </strong>'+ data.properties.start + '<br/><strong/>End: </strong>' + data.properties.start + '<br/><strong/>Event: </strong>' +data.properties.event,
-      {permanent: true}
-      ).openTooltip();
-    }
-    "
-  )
-))
 ```
 
 
@@ -123,11 +70,16 @@ leaflet(kurdis_geo) %>%
 ```{r}
 terror <- read.csv(here::here("Blog_entry_1/data", "iraq_terrorists.csv")) %>%
   mutate(start = as.Date(as.character(start), format = "%d-%b-%y"),
-         end = as.Date(as.character(end), format = "%d-%b-%y"))
+         end = as.Date(as.character(end), format = "%d-%b-%y")) %>%
+  # trick to show the markers on the map. If end = start, no markers will be shown.
+  mutate(end = start + 2)
 
-# Choose terrorist - related event only for the sake of this report
+# Choose violent events only for the sake of this report
 terror <- terror %>%
-  filter(event_type %in% c("Battles", "Explosions/Remote violence", "Violence against civilians"))
+  filter(event_type %in% c("Battles", "Explosions/Remote violence", "Violence against civilians")) %>%
+  # create group for IS and non-IS events
+  mutate(group = ifelse(actor1== "Islamic State (Iraq)" |actor2 == "Islamic State (Iraq)", "IS", "non-IS"),
+         color = ifelse(group == "IS", "red", "blue"))
 
 glimpse(terror)
 ```
@@ -135,40 +87,55 @@ glimpse(terror)
 Variable explanation:  
 -
 
-```{r violences}
+```{r violences-plot, fig.cap="The distribution of terrorists events in Iraq from 2016 to 2020"}
+# get the coordinates for Iraq
+download.file(url = 'http://biogeo.ucdavis.edu/data/diva/adm/IRQ_adm.zip', 
+              destfile = 'iraq.zip')
+unzip(zipfile = 'iraq.zip')
+
+#Read the shp file
+library(rgdal)
+iraq <- readOGR('IRQ_adm0.shp')
+
+# use geojsonio to convert our data.frame
+#  to GeoJSON which timeline expects
 violence_geo <- geojson_json(terror,lat="latitude",lon="longitude")
 
 # create a leaflet map on which we will build
 library(leaftime)
 leaflet(violence_geo) %>%
   addTiles() %>%
-  addPolygons(data = iraq, opacity = 0.25, fillOpacity = 0.2, color = "pink") %>%
-  setView(32, 35, 5) %>%
-  addTimeline(sliderOpts = sliderOptions(
+  addPolygons(data = iraq, opacity = 0.5, fillOpacity = 0.2, color = "pink") %>%
+  setView(42, 32, 5) %>%
+  addLegend(colors = unique(terror$color),
+            position = "topright",
+            labels = unique(terror$group), 
+            title = "Responsible by",
+            opacity = 1) %>%
+  addTimeline(
+    sliderOpts = sliderOptions(
     formatOutput = htmlwidgets::JS(
                "function(date) {return new Date(date).toLocaleDateString()}
                "),
              position = "bottomleft",
-             step = 10000,
+             step = 1000,
              duration = 100000,
              showTicks = TRUE
              ),
-
- timelineOpts = timelineOptions(
-  pointToLayer = htmlwidgets::JS(
+    timelineOpts = timelineOptions(
+      pointToLayer = htmlwidgets::JS(
     "
     function(data, latlng) {
       return L.circleMarker(latlng, {
         radius: 50,
-        color: 'red',
-        fillColor: 'red',
+        color: data.properties.color,
+        fillColor: data.properties.color,
         fillOpacity: 0.25
       }).bindTooltip(
-      '<strong/>Start: </strong>'+ data.properties.start + 
+      '<strong/>Date: </strong>'+ data.properties.start + 
       '<br/><strong/>Event: </strong>' +data.properties.event_type + 
       '<br/><strong/>Sub-event: </strong>' +data.properties.sub_event_type +
-      '<br/><strong/>Actor1: </strong>' +data.properties.actor1 +
-      '<br/><strong/>Actor2: </strong>' +data.properties.actor2 +
+      '<br/><strong/>Parties: </strong>' +data.properties.actor1 + ' vs '+ data.properties.actor2+
       '<br/><strong/>Location: </strong>' +data.properties.location,
       {permanent: false},
       ).openTooltip();
@@ -195,12 +162,6 @@ leaflet(violence_geo) %>%
 1996 September - US extends northern limit of southern no-fly zone to just south of Baghdad.  
 1998 October - Iraq ends cooperation with UN Special Commission to Oversee the Destruction of Iraq's Weapons of Mass Destruction.  
 
-## The terrorist
-
-```{r}
-
-```
-
 ## The Covid-19
 
 ```{r data-load}
@@ -226,6 +187,9 @@ city_raw <- read.csv(here::here("Blog_entry_1/data", "iraq_lat_lon.csv")) %>%
 
 # How life was affected in Iraq? What does the data tell us?
 
+```{r}
+
+```
 
 
 # Tribute to factfullness
@@ -240,7 +204,8 @@ The world is a better place and you just have to believe it
 # Conclusion
 
 
-
+# Fun fact
+For this exercise, i again encountered 
 
 # Reference
 Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686.  

@@ -49,12 +49,12 @@ Irad used to be regarded as the "cradle of civilization" of the Middle Ages. The
 
 However, looking at the country now, all we see is a turbulence of time of wars, fightings and violences. Hundreds of Iraq people fled the country to run away from the terrorists, people died and lost their homes amid the bombing .... (find reference for this).
 
-In the next section, i will try to recap some of the highlights of the Iraq's contemporary current situation based on the choronological order. I handpicked only events that i believed directly led to the current state of Iraq. Before I start, i want you to answer this question yourself: "How do you make of Iraq? Is it a poor country with high children mortality rate, poor facility, high iliteracy rate and ect..". Please keep your answer in mind and proceed. 
+In the next section, i will try to recap some of the highlights of the Iraq's contemporary current situation based on the choronological order. I handpicked only events that i believed directly led to the current state of Iraq. Before I start, i want you to answer this question yourself: "How do you make of Iraq? Is it a poor country torned by wars with high children mortality rate, poor facility, high iliteracy rate and ect..". Please keep your answer in mind and proceed. 
 
 ## The history starts
 Our story started 
 
-## Kurdish
+## Kurdish Internal conflict
 Kurds have never achieved nation-state status, making Kurdistan a non-governmental region and one of the largest stateless nations in the world.  
 Portions of the region are recognized by two countries: Iran, where the province of Kordestan lies; and northern Iraq, site of the autonomous region known as Kurdistan Regional Government (KRG) or Iraqi Kurdistan.  
 Kurds were mostly nomadic until the end of World War I and the breakup of the Ottoman Empire.  
@@ -66,6 +66,12 @@ Kurds make up about 10% of the population in Syria, 19% of the population of Tur
 
 
 ## Terrorists
+
+As of today, Iraq is still torned with many terrorists activities. The Central Intelligence agency (CIA) of America has pointed out that the country currently hosts 5 home- based terrorist groups home and 2 foreign - based terrorist groups, one of which you might have heard a lot in the media - the Islamic State of Iraq and ash-Sham (ISIS). With the   
+
+The Armed Conflict Location & Event Data Project (ACLED) of the United States has tried to put together all of the political violence events and some relevant non - relevant events happened everyday around the world. I obtained a list for Iraq from their database, which can be downloaded [here](https://acleddata.com/data-export-tool/), for the period of 2016 - the most recently of 2020. Using this dataset, i tried to visualise the spread of the terrorist attacks in the territory of Iraq, showing how the country have suffered from the acts for terrorism.
+
+First we have a look at the dataset provided by the ACLED: 
 
 ```{r}
 terror <- read.csv(here::here("Blog_entry_1/data", "iraq_terrorists.csv")) %>%
@@ -84,10 +90,25 @@ terror <- terror %>%
 glimpse(terror)
 ```
 
-Variable explanation:  
--
+ACLED divided the event types into three major groups: Violent events, Demonstrations (which includes protests and riots) and Non - violent actions. A total of 26,235 events were recorded from 2016 to 2020. For the purpose of this section, i filtered only the Violent events to get 21,511 events fitting into the category, which made up a whooping c.82% of total events recorded!
 
-```{r violences-plot, fig.cap="The distribution of terrorists events in Iraq from 2016 to 2020"}
+I only used some of the variables featured in the dataset for this section. Also i created some more to facilitate my construction of the map, they are:  
+
+- start: the day of the event.  
+- end: i created this variable by taking start day plus 2. This variable was made only for the plotting purpose.  
+- event_type: the Violent events are divided into three subgroups: Battles, Explosions/ Remote violence and Violence against vilians.    
+- sub_event_type: smaller subgroups under each subgroup mentioned in the event_type to describe the main activities involved in the event.  
+- actor1 and actor2: parties involved in the event.  
+- location: loction that the events took place.  
+- latitude and longitude: the GPS coordinates of the events' location. 
+- notes: the detailed description of the events.  
+- fatalities: the recorded number of the fatalitites. Eventhough this is an information variable, the data was not collected enough for analysis purpose.  
+- group: i created this variable to put all of the events into two groups: IS- related and non-IS-related.
+- color: color specifies for each group. This is for plotting purpose only.
+
+Next up, we look at the animated map of all violence events that took place in Iraq from 2016 to 2020:  
+
+```{r violences-plot, fig.cap="The distribution of terrorists events in Iraq from 2016 to 2020", out.width= "100%"}
 # get the coordinates for Iraq
 download.file(url = 'http://biogeo.ucdavis.edu/data/diva/adm/IRQ_adm.zip', 
               destfile = 'iraq.zip')
@@ -145,13 +166,22 @@ leaflet(violence_geo) %>%
 ))
 ```
 
-## The relation with Iran
+You can hit the play button in the slider to animate the event map by times. You can also use the forward and backward buttons to control the apprearance of events. By hovering your cursor over the points, you can read the description for each events shown.   
+
+Most violent events in Iraq took place in the North East of the country, cluttering around the Kurdistan and the central regions. We can see that a majority of violent events in Iraq came from the ISIS with the red points dominant the map. The density of the events was particularly dense throughout 2016 but situation started to lift up in 2017 as the Iraq Government launched a campaign to take back Mosul - the second biggest city of Iraq the last remaining ISIS stronghold in Iraq in October 2016. By July 2017, Mosul was liberated. By December 2017, the Iraqi militaries announced that the Iraq's territory was "fully liberated" form the ISIS. From 2018 onwards, we can see that the activities of ISIS were greatly diminished in number in Iraq and the operational area focused mainly on the rural and desert areas. 
+
+This animated map time was constructed using the magnificent works of _timelyportfolio_ on his **leaftime** package. You can visit his github page for the leaftime package [here](https://github.com/timelyportfolio/leaftime) and explore the usage of this wonderful package.  
+
+
+## Foreign relations:
+
+### The relation with Iran
 
 1980-1988 - Iran-Iraq war results in stalemate.
 1981 June - Israeli air raid destroys Iraqi nuclear reactor at Osirak near Baghdad.
 1988 March - Iraq attacks Kurdish town of Halabjah with poison gas, killing thousands.
 
-## The relation with US
+### The relation with US
 
 1990 - Iraq invades and annexes Kuwait, prompting what becomes known as the first Gulf War. A massive US-led military campaign forces Iraq to withdraw in February 1991.  
 1991 April - Iraq subjected to weapons inspection programme.  
@@ -175,20 +205,38 @@ raw_dat <- raw_iraq %>%
   select(dateRep, day, month, year, cases, deaths, popData2019) %>%
   arrange(year, month, day) %>%
   mutate(cumulative_case = cumsum(cases),
-         cumulative_death = cumsum(deaths)) 
+         cumulative_death = cumsum(deaths)) %>%
+  mutate(dateRep = dmy(dateRep))
 ```
 
-```{r city-situation}
-city_raw <- read.csv(here::here("Blog_entry_1/data", "iraq_lat_lon.csv")) %>%
-  mutate(lon = as.numeric(as.character(lon)))
+```{r fig.cap = "COVID-19 in Iraq"}
+p <- raw_dat %>%
+  ggplot() +
+  geom_line(aes(dateRep, cumulative_case), color = "blue") +
+  geom_line(aes(dateRep, cumulative_death), color = "red") +
+  theme_classic() +
+  ylab("") +
+  xlab("Date") +
+  theme(axis.text.x=element_text(angle=90, hjust=1)) +
+  scale_x_date(breaks = seq.Date(from = as.Date("2019-12-31"), 
+                                     to = as.Date("2020-09-12"), by = 7)) +
+  scale_y_continuous(labels = scales::comma,
+                     breaks = seq(from = 0, to = 300000, by = 25000)) +
+  ggtitle("COVID-19 in Iraq") +
+  annotate("text", x = as.Date("2020-08-04"), y = 275000, label = "Cumulative cases") +
+  annotate("text", x = as.Date("2020-08-11"), y = 25000, label = "Cumulative deaths")
+
+ggplotly(p)
 ```
 
-
+We will be looking at the COVID-19 
 
 # How life was affected in Iraq? What does the data tell us?
 
-```{r}
+You have read a long 
 
+```{r}
+iraq_demographics <- read.csv(here::here("Blog_entry_1/data", "iraq_demographics.csv"))
 ```
 
 
@@ -245,4 +293,6 @@ https://stackoverflow.com/questions/43093712/draw-a-map-of-a-specific-country-wi
 “ACLED. (2030). “Armed Conflict Location & Event Data Project (ACLED) Codebook, 2020.””
 
 “Raleigh, Clionadh, Andrew Linke, Håvard Hegre and Joakim Karlsen. (2010). “Introducing ACLED-Armed Conflict Location and Event Data.” Journal of Peace Research 47(5) 651-660.”
+
+https://github.com/timelyportfolio/leaftime/issues
 

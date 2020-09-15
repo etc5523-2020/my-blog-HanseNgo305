@@ -5,22 +5,14 @@ description: |
   reading what we have to say!
 author:
   - name: Hanh Ngo
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+    affiliation: Monash University
+    program: Master of Business Analytics
 date: 09-01-2020
 output:
   distill::distill_article:
     self_contained: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+Hello!
 
-# Learn more about creating blogs with Distill at:
-# https://rstudio.github.io/distill/blog.html
-
-```
-
-
-
+Welcome to "New thing per day" series blog, where i will post about new techniques applying in a 

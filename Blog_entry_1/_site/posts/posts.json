@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/iraq_situation/",
+    "title": "The current state of a kingdom",
+    "description": "Today we will have a tour down history of one of the greatest countries in the historical time - one that was refered to as the \"cradle of civilization\" - Iraq",
+    "author": [
+      {
+        "name": "Hanh Ngo",
+        "url": {}
+      }
+    ],
+    "date": "2020-09-18",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-09-18T21:14:00+07:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/covid_israel/",
     "title": "How are the Jewish doing?",
     "description": "Let's dwelve into our first blog by doing a small visualisation exercise of the covid situation in Israel! I intend to make this first blog to be less formal but more friendly, so we can get to know each other better. Let's visualize together!",
@@ -14,22 +30,6 @@
     "preview": {},
     "last_modified": "2020-09-13T00:27:06+07:00",
     "input_file": {}
-  },
-  {
-    "path": "posts/iraq_situation/",
-    "title": "The current state of a kingdom",
-    "description": "Today we will have a tour down history of one of the greatest countries in the historical time - one that was refered to as the \"cradle of civilization\" - Iraq",
-    "author": [
-      {
-        "name": "Hanh Ngo",
-        "url": {}
-      }
-    ],
-    "date": "2020-09-12",
-    "categories": [],
-    "preview": {},
-    "last_modified": "2020-09-18T20:54:37+07:00",
-    "input_file": "iraq_situation.utf8.md"
   },
   {
     "path": "posts/welcome/",

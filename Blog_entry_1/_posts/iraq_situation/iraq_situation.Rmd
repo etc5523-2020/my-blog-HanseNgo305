@@ -7,7 +7,7 @@ author:
     ID: 31196101
     affiliation: Monash University
     program: Master of Business Analytics
-date: 09-12-2020
+date: 09-18-2020
 output:
   distill::distill_article:
     self_contained: false
@@ -42,7 +42,7 @@ Irad used to be regarded as the "cradle of civilization" of the Middle Ages. The
 ```{r fig.cap = "The Citadel of Ebril"}
 knitr::include_graphics(here::here("Blog_entry_1/data", "ebril_citadels.jpg"))
 ```
-[Source: Hussam Mustafa](http://www.dreamstime.com/Hussamaldeen_info)
+[Source: erbilonlineinfo.wordpress](http://www.dreamstime.com/Hussamaldeen_info)
 
 However, looking at the country now, all we see is a turbulence of time of wars, fightings and violences. Hundreds of Iraq people fled the country to run away from the terrorists, people died and lost their homes amid the bombing.  
 

@@ -15,4 +15,4 @@ output:
 
 Hello!
 
-Welcome to "New thing per day" series blog, where i will post about new techniques applying in a 
+Welcome to "New thing per day" series blog, where i will post about new techniques that i have learnt in schools and topic of interests where i share my ideas, beliefs and opinions.

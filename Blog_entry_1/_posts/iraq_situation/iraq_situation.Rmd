@@ -1,7 +1,7 @@
 ---
 title: "The current state of a kingdom"
 description: |
-  Let's dwelve into our first blog by doing a small visualisation exercise of the covid situation in Israel! I intend to make this first blog to be less formal but more friendly, so we can get to know each other better. Let's visualize together!
+  Today we will have a tour down history of one of the greatest countries in the historical time - one that was refered to as the "cradle of civilization" - Iraq
 author:
   - name: Hanh Ngo
     ID: 31196101
@@ -24,50 +24,41 @@ library(htmlwidgets)
 library(htmltools)
 library(geojsonio)
 library(geojsonlint)
-library(DT)
 library(RColorBrewer)
-library(gganimate)
 library(ggplot2)
 library(kableExtra)
 library(lubridate)
 library(plotly)
-library(gifski)
-library(png)
-library(magick)
 ```
 
-# Introduction
-Hello! and welcome to the second blog post of "New things per day" series. In this blog post, we will explore the 
 
-Choose this country purposely to show the counter intuitive
+Hello! and welcome to the second blog post of "New things per day" series. In this blog post, we will get to know another Middle East country - Iraq. Some of you may have heard of the country, could be of either good or not so good things. Today we will try to explore the country judment - free and in a pair of fresh eyes. Also, we will be using a new package today - the "leaftime" which served as a really nice add - ons to the "leaflet" package and allow you to automate you leaflet map. All credit go to the creator _timelyportfolio_ for his amazing creation.  
 
-# Data description
-
+Let's get started!
 
 # Everything you need to know about Iraq
-Irad used to be regarded as the "cradle of civilization" of the Middle Ages. The country is a home to many heritage and historic sites, originating back from the golden time of the Ottoman regime. Some of the cultural heritage we may have heard of would include the Hanging garden in Babylon, the remnants of palace and buildings.....
+Irad used to be regarded as the "cradle of civilization" of the Middle Ages. The country is a home to many heritage and historic sites, originating back from the golden time of the Ottoman regime. Some of the cultural heritage we may have heard of would include the Hanging garden in Babylon, the Erbil Citadel, the Samarra Archaeological City....
 
-However, looking at the country now, all we see is a turbulence of time of wars, fightings and violences. Hundreds of Iraq people fled the country to run away from the terrorists, people died and lost their homes amid the bombing .... (find reference for this).
+```{r fig.cap = "The Citadel of Ebril"}
+knitr::include_graphics(here::here("Blog_entry_1/data", "ebril_citadels.jpg"))
+```
+[Source: Hussam Mustafa](http://www.dreamstime.com/Hussamaldeen_info)
+
+However, looking at the country now, all we see is a turbulence of time of wars, fightings and violences. Hundreds of Iraq people fled the country to run away from the terrorists, people died and lost their homes amid the bombing.  
 
 In the next section, i will try to recap some of the highlights of the Iraq's contemporary current situation based on the choronological order. I handpicked only events that i believed directly led to the current state of Iraq. Before I start, i want you to answer this question yourself: "How do you make of Iraq? Is it a poor country torned by wars with high children mortality rate, poor facility, high iliteracy rate and ect..". Please keep your answer in mind and proceed. 
 
 ## The history starts
-Our story started 
+The story of Iraq dated back in the 18s when the Ottoman Empired collapsed and Britain took over control of the country. From that moment, a series of religion, ethnicity and power conflicts happened non - stop that derived the country far away from being the "cradle of civilization" that it once was.  
 
 ## Kurdish Internal conflict
-Kurds have never achieved nation-state status, making Kurdistan a non-governmental region and one of the largest stateless nations in the world.  
-Portions of the region are recognized by two countries: Iran, where the province of Kordestan lies; and northern Iraq, site of the autonomous region known as Kurdistan Regional Government (KRG) or Iraqi Kurdistan.  
-Kurds were mostly nomadic until the end of World War I and the breakup of the Ottoman Empire.  
-Kurds make up about 10% of the population in Syria, 19% of the population of Turkey, 15-20% of the population of Iraq and are the second largest ethnicity in Iran.  
+Kurdistan is a non-governmental region and one of the largest stateless nations in the world. Kurdistan positioned in the north of Iraq. The region was a product of conflicts between several of countries and the Kurds to claim control over the territory. Up until today, conflicts between the Government and the Kurds- supported activist groups still occur, and most of them involved the use of gunfires and violence.  
 
-```{r kurdis-timeline, out.width= '100%'}
-
-```
-
+Portions of the region are recognized by two countries: Iran, where the province of Kordestan lies; and northern Iraq, site of the autonomous region known as Kurdistan Regional Government (KRG) or Iraqi Kurdistan. The people populated this area are the Kurds, who were mostly nomandics before the break down of the Ottoman Empire. 
 
 ## Terrorists
 
-As of today, Iraq is still torned with many terrorists activities. The Central Intelligence agency (CIA) of America has pointed out that the country currently hosts 5 home- based terrorist groups home and 2 foreign - based terrorist groups, one of which you might have heard a lot in the media - the Islamic State of Iraq and ash-Sham (ISIS). With the   
+As of today, Iraq is still torned by many terrorists activities. The Central Intelligence agency (CIA) of America has pointed out that the country currently hosts 5 home- based terrorist groups and 2 foreign - based terrorist groups, one of which you might have heard a lot in the media - the Islamic State of Iraq and ash-Sham (ISIS). With the   
 
 The Armed Conflict Location & Event Data Project (ACLED) of the United States has tried to put together all of the political violence events and some relevant non - relevant events happened everyday around the world. I obtained a list for Iraq from their database, which can be downloaded [here](https://acleddata.com/data-export-tool/), for the period of 2016 - the most recently of 2020. Using this dataset, i tried to visualise the spread of the terrorist attacks in the territory of Iraq, showing how the country have suffered from the acts for terrorism.
 
@@ -170,29 +161,31 @@ You can hit the play button in the slider to animate the event map by times. You
 
 Most violent events in Iraq took place in the North East of the country, cluttering around the Kurdistan and the central regions. We can see that a majority of violent events in Iraq came from the ISIS with the red points dominant the map. The density of the events was particularly dense throughout 2016 but situation started to lift up in 2017 as the Iraq Government launched a campaign to take back Mosul - the second biggest city of Iraq the last remaining ISIS stronghold in Iraq in October 2016. By July 2017, Mosul was liberated. By December 2017, the Iraqi militaries announced that the Iraq's territory was "fully liberated" form the ISIS. From 2018 onwards, we can see that the activities of ISIS were greatly diminished in number in Iraq and the operational area focused mainly on the rural and desert areas. 
 
-This animated map time was constructed using the magnificent works of _timelyportfolio_ on his **leaftime** package. You can visit his github page for the leaftime package [here](https://github.com/timelyportfolio/leaftime) and explore the usage of this wonderful package.  
+This animated map time was constructed using the magnificent works of _timelyportfolio_ and his **leaftime** package. You can visit his github page for more information [here](https://github.com/timelyportfolio/leaftime) and explore the usage of this wonderful package.  
 
 
 ## Foreign relations:
 
 ### The relation with Iran
 
-1980-1988 - Iran-Iraq war results in stalemate.
-1981 June - Israeli air raid destroys Iraqi nuclear reactor at Osirak near Baghdad.
-1988 March - Iraq attacks Kurdish town of Halabjah with poison gas, killing thousands.
+Iraq does not exactly have a sweet and amiable relationship with the neighbour in the past. The two countries started to spark tension from 1980 when Iraq started to invade Iran, which marked the begin of the Iran - Iraq war which lasted for 8 years and was considered the "longest conventional war of the 20th century" [The Guardian, 2011](https://www.theguardian.com/world/2011/jul/28/iran-and-iraq-tension-conflict). Million people dead from the gunfire in both countries. One of the worst incidents ever happened in the war was the notorious Halabja incident where thousands of people was poisoned by the poison gas used by the Iraqi in an attempt to battle the Kurdish rebels.  
+
+The two countries went for another two years of silence until the diplomatic relations improved in 1990. Now the two countries have become close brother in arms to fight against the ISIS. 
 
 ### The relation with US
 
-1990 - Iraq invades and annexes Kuwait, prompting what becomes known as the first Gulf War. A massive US-led military campaign forces Iraq to withdraw in February 1991.  
-1991 April - Iraq subjected to weapons inspection programme.  
-1991 Mid-March/early April - Southern Shia and northern Kurdish populations - encouraged by Iraq's defeat in Kuwait - rebel, prompting a brutal crackdown.  
-1991 April - UN-approved haven established in northern Iraq to protect the Kurds. Iraq ordered to end all military activity in the area.  
-1992 August - A no-fly zone, which Iraqi planes are not allowed to enter, is set up in southern Iraq.  
-1995 April - UN allows partial resumption of Iraq's oil exports to buy food and medicine in an oil-for-food programme.  
-1996 September - US extends northern limit of southern no-fly zone to just south of Baghdad.  
-1998 October - Iraq ends cooperation with UN Special Commission to Oversee the Destruction of Iraq's Weapons of Mass Destruction.  
+US started to exhibit its first explicited influence over Iraq in 1990 - at the time the first Gulf War broke down when Iraq invaded Kuwait to seek its oil reserves. US had initiated a massive campaign where military troupes were sent over to force Iraq to withdraw.  
 
-## The Covid-19
+The official US invasion started in 2003, which later known as the US war. The US stated the purpose of such invasion was to stop Iraq from using weapons of mass destruction eccessively.On October of the same year, a report was issued by the US itself confirming there was no presence of mass destruction weapons in Iraq. However, the US military stayed. During this time, video footages of US military torturing Iraq prisonners were leaked that left the whole world shocked.  
+
+A significant turns in the relation between the two nations occurred in 2011 when the new US president Barack Obama had decided to withdraw all the troops from Iraq. In the course of 8 years, more than 100,000 civillans lost their life and the US lost around 4,500 troops. [Source]((https://english.alaraby.co.uk/english/news/2020/1/3/timeline-a-history-of-us-iraq-relations-since-2003)
+
+In 2014, The US made presence in Iraq again, but this time it was for a more friendly purpose. The US military forces arrived to support the Iraqi government battled against the ISIS. By December 2017, Iraq declared they had successfully liberated the country from the terrorist group. 
+
+As of 2020, the two countries fell into tension followed by the death of top Iranian commanders in the strikes occurred in Baghdad's international airport under the order of US President Donald Trump. "Iran's supreme leader Ayatollah Ali Khamenei vows severe revenge". (https://english.alaraby.co.uk/english/news/2020/1/3/timeline-a-history-of-us-iraq-relations-since-2003)
+
+
+## The Covid-19 impact
 
 ```{r data-load}
 data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
@@ -229,31 +222,68 @@ p <- raw_dat %>%
 ggplotly(p)
 ```
 
-We will be looking at the COVID-19 
+And finally we have a few brief about the Covid situation in Iraq as of the latest date. Iraq first confirmed a positive case on 22 February in Najaf. In May, the country observed a terrible outburst which drove the total cases from around 2000 in the start of May to nearly 50,000 in just two months. By 12 September 2020, 7,881 cases had died, accounted for c.3% of the total confirmed cases.  
+
+In April, before the outbreak, the Iraq Government was claimed to not reveal the correct statistics. The Iraquis's skepticism of the Government was second after a Reuters news agency was fined and suspended for three months after this agency claimed that the statistics announced by the Government were not trustworthy. An UN statement arrived on the 3 April had required the Government to provide supports for their independence reports on the infection. Later, the Government admitted the true number of confirmed cases could range from 3,000 to 9,000 as opposed of 772 announced on the 4 April, explaining that such act was to demotivate civillans from fighting the pandemic and calling the decision on sanctioning the Reuters agency "regrettable". [(Reuters, 2020)](https://www.al-monitor.com/pulse/originals/2020/04/iraq-iran-coronavirus-reuters.html). 
 
 # How life was affected in Iraq? What does the data tell us?
 
-You have read a long 
+You have read a long summary of the situation of Iraq, and i curious what do you think of the country? The Country was full of conflicts, of wars, ravaged by the terrorists, affected the by dropping in oil price and now sufferred from the Covid pandemic. Before we start looking at some numbers I want you to try answering the questions below and remember tha answer as you make your way through the rest of this blog:  
+
+1. How many girls do you think in Iraq can read and write at the age 15 and over?
+  * 20 percent  
+  * 40 percent  
+  * 60 percent  
+
+2. What is the life expectancy of Iraq as of 2020?
+  * 50 years  
+  * 60 years  
+  * 70 years  
+
+3. How many people in Iraq have access to improved drinking water source?*
+  * 70 percent  
+  * 80 percent   
+  * 90 percent    
+_By definition, Improved drinking water source included piped water into dwelling, yard, or plot; public tap or standpipe; tubewell or borehole; protected dug well; protected spring; or rainwater collection. Unimproved drinking water source included unprotected dug well; unprotected spring; cart with small tank or drum; tanker truck; surface water, which includes rivers, dams, lakes, ponds, streams, canals or irrigation channels; or bottled water [CIA, 2020)](https://www.cia.gov/library/publications/the-world-factbook/docs/notesanddefs.html#361)_
+
+4. How many people in Iraq have access to electricity? 
+  * 50 percent  
+  * 80 percent
+  * 100 percent  
+  
+5. How many people in Iraq have internet access?
+  * 30 percent  
+  * 50 percent
+  * 70 percent  
+
+To answer these question myself, at first I used the [UN Population Censuses's Datasets](https://unstats.un.org/unsd/demographic-social/products/dyb/dybcensusdata.cshtml) to locate the demographics information for Iraq. To my surprise, no data was provided for the country in any year. I then tried to find another way around and came accros the CIA's annual report called "World fact book" in which they will try to compact in some crucial and usefull information that would describe a nation's situation in a year.  
+The information was not completed for all of the year, but definitelly helpful to picture out the how life in Iraq would look like. Below is the summary of some important statistics from the most recent report of 2020:
 
 ```{r}
 iraq_demographics <- read.csv(here::here("Blog_entry_1/data", "iraq_demographics.csv"))
+
+iraq_demographics %>%
+  kable(caption = "Iraq facts summary") %>%
+  kable_styling("striped") %>%
+  row_spec(c(6,7,11,13,14),color = "white", background = "purple")
 ```
 
+I have highlighted the answers for the questions above. How many did you get correct?   
+If you get most of them correct, congratulations! You are equipped with a very strong sense of the world. If you did badly? You are not the only one, i can assure you.
 
-# Tribute to factfullness
+Looking at the demographics, you will see that even though have been raveging from the continuous wars and conflicts, Iraq possessed a quite high standard of living. That is to say these standards had been worsening from the past due to the consequences of a series of internal conficts, international wars and invasions. For example, literacy (measured by the percentage of people of the age 15 and over can read and write) of Iraq used to reach 71% in men and 45% in women in 1995, now in 2020, the proportions are 56.2% and 44% respectively. Infant mortality rate has improved from 62.49 deaths in 2000 to 19.5 deaths in 2020 - an impressive step over the course of only 20 years!  
 
-The world is a better place and you just have to believe it
- 
-
-
-
+The country still has a long way to go, with the unemployment rate really high (the situation is even worse by gender when 63.3% of women were unemployed), physicians density low and hospital bed density low. However, we have to acknowledge that Iraq's condition may be much more better then how we may deem the country to be. The Covid 19 and other existing conflicts will certainly and temporarily get into the way of the country's development, but will in no way, stop the country from moving forwards.  
 
 
-# Conclusion
+# Tribute to "Factfullness"
+The set of questions was inspired by the book "Factfullness" of professor Hans Rosling. In all those years of teaching and being a doctor, Hans had asked thousands of persons the questions about the fact of the world as i has tried to asked you before. He wanted to highlight the fact that people's knowledge is severly outdated. That what they thought they know about the world today was actually of the world many years ago. Such ignorance clouded the way people saw the world, making them unable to see the improvement, the revolution, the beautilful and the best of the place we are living. 
 
+Some of his questions may surprise you, for example: how poverty has changed in the last 20 years? Alomst doubled, remain or almost halved? or how many percent of 1-year-old children in the world get vaccinated? 20, 50 or 80 percent? Only 7% of people asked answered the first question correctly and 13% for the second question (The answer is almost halved and 80%, by the way).  
 
-# Fun fact
-For this exercise, i again encountered 
+"Factfullness" is his efforts to "eradicate ignorance" from people. I would certainly recommend this reading. Hopefully you will feel that your sense of thinking will alter by the time you finished the book as professor Hans would hope.
+
+Thank you for reading this second blog! Again, any comments and suggestions are always welcomed!
 
 # Reference
 Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686.  
@@ -267,32 +297,17 @@ Erich Neuwirth (2014). RColorBrewer: ColorBrewer Palettes. R package version 1.1
 Hao Zhu (2019). kableExtra: Construct Complex Table with 'kable' and Pipe Syntax. R package version 1.1.0. https://CRAN.R-project.org/package=kableExtra  
 Garrett Grolemund, Hadley Wickham (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25. URL http://www.jstatsoft.org/v40/i03/.  
 Jeroen Ooms (2018). gifski: Highest Quality GIF Encoder. R package version 0.8.6. https://CRAN.R-project.org/package=gifski  
-Simon Urbanek (2013). png: Read and write PNG images. R package version 0.1-7. https://CRAN.R-project.org/package=png  
-Jeroen Ooms (2020). magick: Advanced Graphics and Image-Processing in R. R package version 2.4.0. https://CRAN.R-project.org/package=magick  
-Alburez-Gutierrez, D. (2020). Population pyramids in R for beginners. Retrieved 3 September 2020, from http://alburez.me/2018-03-20-Population-pyramids-in-R-for-beginners/  
+Jonathan Skeate and Kent Russell (2020). leaftime:'Leaflet-timeline' Plugin for Leaflet. R package version 0.2.0. https://CRAN.R-project.org/package=leaftime  
 Download today’s data on the geographic distribution of COVID-19 cases worldwide. (2020). Retrieved 2 September 2020, from https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide  
-Haverty, Mironova, Hlaing, Fishbein, Garrett, & Mitnick et al. (2020). Israel’s Cautionary Coronavirus Tale. Retrieved 4 September 2020, from https://foreignpolicy.com/2020/07/22/israel-coronavirus-second-wave-netanyahu/  
-Israel Geographic coordinates - Latitude & longitude. (2020). Retrieved 4 September 2020, from https://www.geodatos.net/en/coordinates/israel  
-Israel latitude and longitude. (2020). Retrieved 4 September 2020, from https://latitudelongitude.org/il/  
-Sandri, M. (2020). gganimate time series and two line plot. Retrieved 3 September 2020, from https://stackoverflow.com/questions/54855334/gganimate-time-series-and-two-line-plot  
-https://www.ifimes.org/en/7991-the-current-situation-in-iraq
-
-https://www.bbc.com/news/world-middle-east-14546763
-
-https://www.wmf.org/project/cultural-heritage-sites-iraq
-
-https://en.wikipedia.org/wiki/PUK_insurgency
-
-https://uca.edu/politicalscience/dadm-project/middle-eastnorth-africapersian-gulf-region/iraqkurds-1932-present/
-
-https://link.springer.com/content/pdf/bbm%3A978-1-137-60181-0%2F1.pdf
-
-https://stackoverflow.com/questions/43093712/draw-a-map-of-a-specific-country-with-leaflet
- 
-
-“ACLED. (2030). “Armed Conflict Location & Event Data Project (ACLED) Codebook, 2020.””
-
-“Raleigh, Clionadh, Andrew Linke, Håvard Hegre and Joakim Karlsen. (2010). “Introducing ACLED-Armed Conflict Location and Event Data.” Journal of Peace Research 47(5) 651-660.”
-
-https://github.com/timelyportfolio/leaftime/issues
-
+https://www.ifimes.org/en/7991-the-current-situation-in-iraq  
+https://www.bbc.com/news/world-middle-east-14546763  
+https://www.wmf.org/project/cultural-heritage-sites-iraq  
+https://en.wikipedia.org/wiki/PUK_insurgency  
+https://uca.edu/politicalscience/dadm-project/middle-eastnorth-africapersian-gulf-region/iraqkurds-1932-present/  
+https://link.springer.com/content/pdf/bbm%3A978-1-137-60181-0%2F1.pdf  
+https://stackoverflow.com/questions/43093712/draw-a-map-of-a-specific-country-with-leaflet  
+“ACLED. (2030). “Armed Conflict Location & Event Data Project (ACLED) Codebook, 2020.””  
+“Raleigh, Clionadh, Andrew Linke, Håvard Hegre and Joakim Karlsen. (2010). “Introducing ACLED-Armed Conflict Location and Event Data.” Journal of Peace Research 47(5) 651-660.”   
+https://www.theguardian.com/world/2011/jul/28/iran-and-iraq-tension-conflict  
+http://origins.osu.edu/article/century-us-relations-iraq  
+https://english.alaraby.co.uk/english/news/2020/1/3/timeline-a-history-of-us-iraq-relations-since-2003  

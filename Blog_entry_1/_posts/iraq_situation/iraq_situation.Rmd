@@ -39,11 +39,6 @@ Let's get started!
 # Everything you need to know about Iraq
 Irad used to be regarded as the "cradle of civilization" of the Middle Ages. The country is a home to many heritage and historic sites, originating back from the golden time of the Ottoman regime. Some of the cultural heritage we may have heard of would include the Hanging garden in Babylon, the Erbil Citadel, the Samarra Archaeological City....
 
-```{r fig.cap = "The Citadel of Ebril"}
-knitr::include_graphics(here::here("Blog_entry_1/data", "ebril_citadels.jpg"))
-```
-[Source: erbilonlineinfo.wordpress](http://www.dreamstime.com/Hussamaldeen_info)
-
 However, looking at the country now, all we see is a turbulence of time of wars, fightings and violences. Hundreds of Iraq people fled the country to run away from the terrorists, people died and lost their homes amid the bombing.  
 
 In the next section, i will try to recap some of the highlights of the Iraq's contemporary current situation based on the choronological order. I handpicked only events that i believed directly led to the current state of Iraq. Before I start, i want you to answer this question yourself: "How do you make of Iraq? Is it a poor country torned by wars with high children mortality rate, poor facility, high iliteracy rate and ect..". Please keep your answer in mind and proceed. 
@@ -65,7 +60,7 @@ The Armed Conflict Location & Event Data Project (ACLED) of the United States ha
 First we have a look at the dataset provided by the ACLED: 
 
 ```{r}
-terror <- read.csv(here::here("Blog_entry_1/data", "iraq_terrorists.csv")) %>%
+terror <- read.csv(here::here("Blog_entry_1", "iraq_terrorists.csv")) %>%
   mutate(start = as.Date(as.character(start), format = "%d-%b-%y"),
          end = as.Date(as.character(end), format = "%d-%b-%y")) %>%
   # trick to show the markers on the map. If end = start, no markers will be shown.
@@ -126,9 +121,6 @@ leaflet(violence_geo) %>%
             opacity = 1) %>%
   addTimeline(
     sliderOpts = sliderOptions(
-    formatOutput = htmlwidgets::JS(
-               "function(date) {return new Date(date).toLocaleDateString()}
-               "),
              position = "bottomleft",
              step = 1000,
              duration = 100000,
@@ -260,7 +252,7 @@ To answer these question myself, at first I used the [UN Population Censuses's D
 The information was not completed for all of the year, but definitelly helpful to picture out the how life in Iraq would look like. Below is the summary of some important statistics from the most recent report of 2020:
 
 ```{r}
-iraq_demographics <- read.csv(here::here("Blog_entry_1/data", "iraq_demographics.csv"))
+iraq_demographics <- read.csv(here::here("Blog_entry_1", "iraq_demographics.csv"))
 
 iraq_demographics %>%
   kable(caption = "Iraq facts summary") %>%

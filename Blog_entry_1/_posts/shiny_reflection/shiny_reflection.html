@@ -49,7 +49,7 @@
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dashboard.png","shiny_reflection_files/bowser-1.9.3/bowser.min.js","shiny_reflection_files/distill-2.2.21/template.v2.js","shiny_reflection_files/jquery-1.11.3/jquery.min.js","shiny_reflection_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["about.png","dashboard.png","example_valuebox.png","example.png","infection-route.png","shiny_reflection_files/bowser-1.9.3/bowser.min.js","shiny_reflection_files/distill-2.2.21/template.v2.js","shiny_reflection_files/jquery-1.11.3/jquery.min.js","shiny_reflection_files/webcomponents-2.0.0/webcomponents.js","vietnam-map.png","world-map.png","world-situation.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -976,7 +976,7 @@
 <p>Hello again!</p>
 <p>It’s this time of month where i will emerge and pop out something new on this blogpost. So last week I was attempted to create something a little more complex than what i usually do. Its original purpose was for a school project, but i saw this as quite a challenge to what i was accustomed to, which used to be markdowns and some cute and ready-for-running HTML pages knitted from those markdowns. It was a shiny app with a whole lots of different syntax, having different structure and holding a handful of new definition. The topic for this Shiny app was the same old Covid-19 that people cannot seem to stop talking about these days. I might want to see if i can create something new out of the same old stuff.</p>
 <h1 id="about-this-shiny-app-i-keep-talking-about">About this Shiny app i keep talking about</h1>
-<p>The Shiny app i build this time named “The Vietnam COVID-19”. As the named implied, this app was built focusing on reporting the COVID situation in Vietnam from the time when the pandemic first outbroke in the country. I chose Vietnam simply because this is my country so i probably had a lot to tell (I tried).</p>
+<p>The Shiny app i build this time named “The Vietnam COVID-19”. As the named implied, this app was built focusing on reporting the COVID situation in Vietnam from the time when the pandemic first out-broke in the country. I chose Vietnam simply because this is my country so i probably had a lot to tell (I tried).</p>
 <p>The app was sectioned into four subsection, which are:</p>
 <ul>
 <li>The <em>Bulletin Board</em> page which provided some recaps on the current situation of the country. Information like the total confirmed cases, total recovered and total death can be found here. A bar chart showing change of new cases by day was also featured here, along with the list of confirmed cases which can be unfolded by clicking on the day of your choice in the bar chart.</li>
@@ -985,22 +985,78 @@
 <p><img src="dashboard.png" width="1434" /></p>
 </div>
 <ul>
-<li>The <em>Infection Route</em> page will give you a nice</li>
+<li>In the <em>Infection Route</em> page, you will be given a handful of information. We started off by having a network on the left hand side where you can review the infection route of patients for each month. You are in the control of which legend to show on the chart by toggling on and off the legend of your choice. On the right hand side, we have the information of each patient featured on the chart for your selected month. In summary, you can learn of the total cases for each month, the confirmed connection between cases, breakdown of numbers by status (recovered, active, deceased) and the patient information featured for your reference.</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="/Users/HanseMac/Desktop/Monash/ETC5523_Communicating_with_data/Blog_entry/my-blog-HanseNgo305/Blog_entry_1/infection-route.png" width="1430" /></p>
+<p><img src="infection-route.png" width="1430" /></p>
+</div>
+<ul>
+<li>The <em>World Situation</em> will give you a trip around the world to see how other countries are doing. In this page, you will explore some basic COVID-19 stats for all of the countries in the world, along with a breakdown to details by each country of your choice by selecting the input in the right hand side panel and scrolling down to the table underneath the grand map.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="world-situation.png" width="1434" /></p>
+</div>
+<ul>
+<li>Finally, the <em>About</em> will be the place where i gave my acknowledgment and reference to other people’s works and resources that inspired me during my creation of this app. A nice image of commemory stamps issued in Vietnam to encourage the health workers force was also featured so it could sooth your hurting eyes from the jungle of words in this page.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="about.png" width="1434" /></p>
 </div>
 <h1 id="what-i-have-done-well-or-at-least-i-believe-i-have-done-well">What i have done well (or at least i believe i have done well)</h1>
-<p>– What did you do well?</p>
+<p>The last experience closest to Shiny i have ever done was a flexdashboard which embedded some Shiny features to make it more interactive. This is my first attempt fully building an app on Shiny.</p>
+<p>However, most of the time used for this app was spent for the brainstorming process. I spent 4 days out of a week just to ask myself what people would actually care about when they look at a COVID bulletin board. Too much information and analysis could be both nice and distracted at the same time. I tried to stick with the basic in order not to over complicate my works but still be able to answer all the first level questions ones may have. With that in mind, i consider the story flow is the strongest point of this app. However, please do let me know if you think other bits of information should be added to further expand this “basic” patch.</p>
+<p>Asides from the story flow which i pride myself on, i do think my app successfully projected some colour into the dull numbers. If you could take a look at the <a href="https://ncov.moh.gov.vn/web/guest/trang-chu">Vietnam’s MOH main COVID infor hub</a> you would all agree that the content is somewhat lacking to attract the audience’s attention. Information was plenty but less efforts was made to bring out those bits and made the data worthwhile. I wanted to change it, so the platform will be more user-friendly and make the fullest use of the data gathered. I think i have managed to achieve a part of such goal.</p>
 <h1 id="what-i-could-have-done-better">What i could have done better</h1>
-<p>– What are the points you can improve on?</p>
-<p>– What are some things that you’d like to add that’s plausible?</p>
-<p>Translation - More information Automatic update</p>
-<p>– What are some things that you’d like to add that cannot be done yet due to limitation in data or technology?</p>
+<p>Needless to say, there are tons of points that can be improved to make the app more vivid and effective. I have a lot of things i want to do with this app, but the time constraint - aka the deadline had forced me to pause a little bit. Listed down here are the points that i believed i can make better and those that i wished i could make better.</p>
+<h2 id="points-i-can-improve-on">Points i can improve on</h2>
+<ol type="1">
+<li>The map background and legends:</li>
+</ol>
 <ul>
-<li>color for the value box</li>
-<li>legend colour</li>
+<li>You can see from the app the i included a map of Vietnam and the world to do chrolopeth map. The lightbox titles did a justice on adding the polygons but produced grey background which dull the page a bit. My ideal was that the background would be either white or naught so the map is the only thing featured in the page. The <em>echartsforR</em> package can made this possible but it will take me extra time to learn around a bit before i can make it possible.<br />
+</li>
+<li>The legends of the map currently include the NA value which diluted the information. I believe i can improve this map bu removing this NA indicator.</li>
 </ul>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="vietnam-map.png" width="363" /></p>
+</div>
+<ol start="2" type="1">
+<li>The labels</li>
+</ol>
+<p>In world map, you can see that the labels are not properly formatted as the total cases number was not in a neat format. I struggled a bit at this part as i could not fix this in time to submit the app. Further formatting the labels could be done to improve the visual of this app.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="world-map.png" width="569" /></p>
+</div>
+<ol start="3" type="1">
+<li>The explanation</li>
+</ol>
+<p>I did not include a lot of explanation for this app eventhough i can assure you that the COVID story in Vietnam has more to tell. A reason for that was partly due to the constrain of time. Another reason was that i have yet to figure out how to visualise these stories nicely in a way that would involve less reading and more viewing. Also i am stuck at organizing the page structure to fit in a lot of details. That is a homework for me after all the deadline rush is over.</p>
+<ol start="4" type="1">
+<li>App publish</li>
+</ol>
+<p>This bit is not about improvement for the app itself but the this blogpost. I would very much want to post the link to the Shiny app here so you can have a hand on the app and if possible, provide me with more feedbacks. However, some technical glitch happened i have yet to publish this app to this Shinyapp.io hub. It’s a shame not being able to showcase your works to a wider range of audience. I am currently looking into this problem and hope to fix it in no time.</p>
+<h2 id="points-that-i-wanted-to-add-if-i-had-more-time">Points that i wanted to add if i had more time</h2>
+<p>I would probably try to, when i have some time away from all the studying and deadline.</p>
+<ul>
+<li>Translation: With the app being written in English, there is a huge barrier to Vietnamese readers to whom this information matter the most. Moreover, some patient’s symptoms which i featured in the app was written in Vietnamese which made the app incomplete as a whole. If there is time i wanted to build this app bilingual so i could approach a wider range of audience.<br />
+</li>
+<li>Automatic update: As I made claim in the app, date was gather manually by me from the Government source so information presented in the app would be outdated right at the moment I’m done with the construction. Such thing diminished the effectiveness of the app significantly. I’m looking for a way to automatically update the source file. I am having web scrapping on mind which will be reserved for further study to make sure the technique is applicable.</li>
+</ul>
+<h2 id="points-that-i-wished-i-could-change-but-i-could-not-due-to-limitation-in-data-or-technology">Points that i wished i could change but i could not due to limitation in data or technology</h2>
+<ul>
+<li>In the <em>Bulletin Board</em>, i featured some value boxes a the top to capture the main stats of the whole board. If you are familiar with the value boxes featured in the flexdashboard you would figure that these little boxes are ought to be colourful to draw in the attention. However, the navbar page in the Shiny layout did not exactly work along with the CSS styles defined for the value box. Such styles would be optimal in the dashboard environment. As the results, colour was not visible which defeated the purpose of the value box. This bug is not yet resolved and there was little I could do at the moment.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="example_valuebox.png" width="1346" /></p>
+</div>
+<ul>
+<li>In the <em>Infection route</em> , some of you might realize that the legend colours were not consistent across the months. That means if you choose July, red will indicate the Recovered patients while in September, Recovered is presented by the dark blue. Such inconsistency may create confusion and frustration when you read the chart. This is a big of the package and is pending for resolve. This chart was created using the <em>echartsforR</em> package which was released mid-2020. As such, a lot of improvements need to be made to further enhance the performance of the package. For now, we still have to live with the bug until solution is released.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="example.png" width="676" /></p>
+</div>
+<h1 id="an-afterword">An afterword</h1>
+<p>I figured this blogpost could be a bit boring compared to others as it was more on the personal side. But i still hope that my reflection could somehow prove useful to you in some way. Again, any recommendations, advice and opinions are warmly welcomed. Thanks a lot for spending time to read this long post, much appreciated!</p>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

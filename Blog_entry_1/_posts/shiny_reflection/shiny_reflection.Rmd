@@ -24,17 +24,27 @@ The app was sectioned into four subsection, which are:
 - The _Bulletin Board_ page which provided some recaps on the current situation of the country. Information like the total confirmed cases, total recovered and total death can be found here. A bar chart showing change of new cases by day was also featured here, along with the list of confirmed cases which can be unfolded by clicking on the day of your choice in the bar chart.  
 
 ```{r include-dashboard}
-knitr::include_graphics(here::here("Blog_entry_1","dashboard.png"))
+knitr::include_graphics(file.path(getwd(),"dashboard.png"))
 ```
 
-- The _Infection Route_ page will give you a nice 
+
+- In the _Infection Route_ page, you will be given a handful of information. We started off by having a network on the left hand side where you can review the infection route of patients for each month. You are in the control of which legend to show on the chart by toggling on and off the legend of your choice. On the right hand side, we have the information of each patient featured on the chart for your selected month. In summary, you can learn of the total cases for each month, the confirmed connection between cases, breakdown of numbers by status (recovered, active, deceased) and the patient information featured for your reference.  
 
 ```{r include-infectionroute}
-knitr::include_graphics(here::here("Blog_entry_1","infection-route.png"))
+knitr::include_graphics(file.path(getwd(),"infection-route.png"))
 ```
 
+- The _World Situation_ will give you a trip around the world to see how other countries are doing. In this page, you will explore some basic COVID-19 stats for all of the countries in the world, along with a breakdown to details by each country of your choice by selecting the input in the right hand side panel and scrolling down to the table underneath the grand map. 
 
+```{r}
+knitr::include_graphics(file.path(getwd(),"world-situation.png"))
+```
 
+- Finally, the _About_ will be the place where i gave my acnowledgment and reference to other people's works and resources that inspired me during my creation of this app. A nice image of commemory stamps issued in Vietnam to encourage the health workers force was also featured so it could sooth your hurting eyes from the jungle of words in this page.  
+
+```{r}
+knitr::include_graphics(file.path(getwd(),"about.png"))
+```
 
 # What i have done well (or at least i believe i have done well)
 – What did you do well?

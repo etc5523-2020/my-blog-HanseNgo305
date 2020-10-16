@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/shiny_reflection/",
+    "title": "A reflection on Shiny",
+    "description": "Recently i decided to put my Shiny skill to the test with a mini project that took one week to complete. Now it's time to reflect on what i have done well and what can be improved. Hope you will find something interesting out of what i have to say!",
+    "author": [
+      {
+        "name": "Hanh Ngo",
+        "url": {}
+      }
+    ],
+    "date": "2020-10-16",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-16T16:00:25+07:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/iraq_situation/",
     "title": "The current state of a kingdom",
     "description": "Today we will have a tour down history of one of the greatest countries in the historical time - one that was refered to as the \"cradle of civilization\" - Iraq",

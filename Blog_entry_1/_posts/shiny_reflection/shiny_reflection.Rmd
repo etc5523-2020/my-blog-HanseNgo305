@@ -1,0 +1,44 @@
+---
+title: "A reflection on Shiny"
+description: |
+  Recently i decided to put my Shiny skill to the test with a mini project that took one week to complete. Now it's time to reflect on what i have done well and what can be improved. Hope you will find something interesting out of what i have to say!
+author:
+  - name: Hanh Ngo
+    affiliation: Monash University
+    program: Master of Business Analytics
+date: 10-16-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Hello again!
+
+It's this time of month where i will emerge and pop out something new on this blogpost. So last week I was attempted to create something a little more complex than what i usually do. Its original purpose was for a school project, but i saw this as quite a challenge to what i was accustomed to, which used to be markdowns and some cute and ready-for-running HTML pages knitted from those markdowns. It was a shiny app with a whole lots of different syntax, having different structure and holding a handful of new definition. The topic for this Shiny app was the same old Covid-19 that people cannot seem to stop talking about these days. I might want to see if i can create something new from a same old stuff. 
+
+# About this Shiny app i keep talking about
+A section introducing your shiny app and what it does (2 marks)
+
+
+# What i have done well (or at least i believe i have done well)
+– What did you do well?
+
+
+# What i could have done better
+
+– What are the points you can improve on?
+
+
+– What are some things that you’d like to add that’s plausible?
+
+Translation - More information
+Automatic update
+
+
+– What are some things that you’d like to add that cannot be done yet due to limitation in data or technology?
+
+- color for the value box
+- legend colour
+
+
+

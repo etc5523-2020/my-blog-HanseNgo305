@@ -36,23 +36,29 @@ knitr::include_graphics(file.path(getwd(),"infection-route.png"))
 
 - The _World Situation_ will give you a trip around the world to see how other countries are doing. In this page, you will explore some basic COVID-19 stats for all of the countries in the world, along with a breakdown to details by each country of your choice by selecting the input in the right hand side panel and scrolling down to the table underneath the grand map. 
 
-```{r}
+```{r include-worldmap}
 knitr::include_graphics(file.path(getwd(),"world-situation.png"))
 ```
 
 - Finally, the _About_ will be the place where i gave my acnowledgment and reference to other people's works and resources that inspired me during my creation of this app. A nice image of commemory stamps issued in Vietnam to encourage the health workers force was also featured so it could sooth your hurting eyes from the jungle of words in this page.  
 
-```{r}
+```{r include-about}
 knitr::include_graphics(file.path(getwd(),"about.png"))
 ```
 
 # What i have done well (or at least i believe i have done well)
-– What did you do well?
 
+The last experience closest to Shiny i have ever done was a flexdashboard which embedded some Shiny features to make it more interactive. This is my first attempt fully building an app on Shiny. 
 
-# What i could have done better
+However, most of the time used for this app was spent for the brainstorming process. I spent 4 days out of a week just to ask myself what people would actually care about when they look at a COVID bulletin board. Too much information and analysis could be both nice and distractive at the same time. I tried to stick with the basic in order not to overcomplicate my works but still be able to answer all the first level questions ones may have. With that in mind, i consider the story flow is the strongest point of this app. However, please do let me know if you think other bits of information should be added to further expand this "basic" patch.  
 
+Asides from the story flow which i pride myself on, i do think my app successfully projected some colour into the dull numbers. If you could take a look at the [Vietnam's MOH main COVID infor hub](https://ncov.moh.gov.vn/web/guest/trang-chu) you would all agree that the content is somewhat lacking to attract the audience's attention. Information was plenty but less efforts was made to bring out those bits and made the data worthwhile. I wanted to change it, so the platform will be more user-friendly and make the fullest use of the data gathered. I think i have managed to achieve a part of such goal.
+
+# What i could have done better 
+
+Needless to say, there is a tons of 
 – What are the points you can improve on?
+
 
 
 – What are some things that you’d like to add that’s plausible?

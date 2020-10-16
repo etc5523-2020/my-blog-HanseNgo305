@@ -14,10 +14,26 @@ output:
 
 Hello again!
 
-It's this time of month where i will emerge and pop out something new on this blogpost. So last week I was attempted to create something a little more complex than what i usually do. Its original purpose was for a school project, but i saw this as quite a challenge to what i was accustomed to, which used to be markdowns and some cute and ready-for-running HTML pages knitted from those markdowns. It was a shiny app with a whole lots of different syntax, having different structure and holding a handful of new definition. The topic for this Shiny app was the same old Covid-19 that people cannot seem to stop talking about these days. I might want to see if i can create something new from a same old stuff. 
+It's this time of month where i will emerge and pop out something new on this blogpost. So last week I was attempted to create something a little more complex than what i usually do. Its original purpose was for a school project, but i saw this as quite a challenge to what i was accustomed to, which used to be markdowns and some cute and ready-for-running HTML pages knitted from those markdowns. It was a shiny app with a whole lots of different syntax, having different structure and holding a handful of new definition. The topic for this Shiny app was the same old Covid-19 that people cannot seem to stop talking about these days. I might want to see if i can create something new out of the same old stuff.  
 
 # About this Shiny app i keep talking about
-A section introducing your shiny app and what it does (2 marks)
+The Shiny app i build this time named "The Vietnam COVID-19". As the named implied, this app was built focusing on reporting the COVID situation in Vietnam from the time when the pandemic first outbroke in the country. I chose Vietnam simply because this is my country so i probably had a lot to tell (I tried).  
+
+The app was sectioned into four subsection, which are:  
+
+- The _Bulletin Board_ page which provided some recaps on the current situation of the country. Information like the total confirmed cases, total recovered and total death can be found here. A bar chart showing change of new cases by day was also featured here, along with the list of confirmed cases which can be unfolded by clicking on the day of your choice in the bar chart.  
+
+```{r include-dashboard}
+knitr::include_graphics(here::here("Blog_entry_1","dashboard.png"))
+```
+
+- The _Infection Route_ page will give you a nice 
+
+```{r include-infectionroute}
+knitr::include_graphics(here::here("Blog_entry_1","infection-route.png"))
+```
+
+
 
 
 # What i have done well (or at least i believe i have done well)

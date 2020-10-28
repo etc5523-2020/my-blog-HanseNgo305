@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/shiny_neighbour/",
+    "title": "Visit your Shiny neighbour",
+    "description": "In the last blog, I had the chance to showcase my most recent Shiny app done for a class assignment. In this blog, I would love to pay a visit to one of my classmate's app from the same assignment. It is always an experience to see how your neighbour is doing (not all of the time, though) and be able to learn new things from his or her works.",
+    "author": [
+      {
+        "name": "Hanh Ngo",
+        "url": {}
+      }
+    ],
+    "date": "2020-10-28",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-28T16:19:57+07:00",
+    "input_file": "shiny_neighbour.utf8.md"
+  },
+  {
     "path": "posts/shiny_reflection/",
     "title": "A reflection on Shiny",
     "description": "Recently i decided to put my Shiny skill to the test with a mini project that took one week to complete. Now it's time to reflect on what i have done well and what can be improved. Hope you will find something interesting out of what i have to say!",

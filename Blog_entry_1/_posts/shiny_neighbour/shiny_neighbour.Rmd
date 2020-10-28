@@ -1,0 +1,66 @@
+---
+title: "Unboxing an R package"
+description: |
+  Unboxing stuffs has always been a pleasure, and it would be even more so when you spent hours choosing the items inside or actually building the items inside. I am very excited today to unbox an R package created by one of my classmate for his assignment. We will have a look at his package, trying to learn what he had done best and what he could do to improve his work.  
+author:
+  - name: Hanh Ngo
+    affiliation: Monash University
+    program: Master of Business Analytics
+date: 10-28-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+The package I will be reviewing today was created by Dea Avega Editya from my Master class and named **covidasean**. The **covidasean** package is a container for a Shiny dashboard Dea made for his previous assignment reporting the COVID situation in the ASEAN region.  
+
+# An app overview
+
+The covidasean package could be downloaded and installed via Dea's github [here](https://github.com/etc5523-2020/r-package-assessment-dedi0003). I was able to install and build the package locally without any problems.
+
+To launch the app contained in the package, Dea set up a function called `launch_app()` which can be typed into the console to call the app out. A minor problem arised when two of the dependence packages he used for his Shiny app, the _tidycovid19_ and _wbstats_, were temporarily taken off CRAN. Users who did not have these two packages installed beforehand have to install them remotely from Github. Eventhough it took extra works, the app launched successfully after the two missing packages were installed.
+
+The package's structure contained everythings we need to build and run a simple package. As we can see from an image below, Dea had created a description, a readme, documentation for the main two of his five R functions (nested under the _man_ folder), vignettes and two unit tests for his package which is enough to get you started with. Moreover, his [pkgdown page](https://etc5523-2020.github.io/r-package-assessment-dedi0003/) was promptly set up which really helps navigating through his package. Well done here Dea!
+
+```{r eval = FALSE}
+fs::dir_tree(path = "/Users/HanseMac/Desktop/Monash/ETC5523_Communicating_with_data/Blog_entry/my-blog-HanseNgo305/r-package-assessment-dedi0003-master", recurse = FALSE)
+```
+
+```{r structure}
+# paste pictures to avoid path conflicts
+knitr::include_graphics(file.path(getwd(),"structure.png"))
+```
+
+# Potential area for improvement
+
+## The package
+
+
+
+## The Shiny app
+
+• A paragraph that explores the questions: Are the improvements that could be made to the code? Are there improvements that could be made to the shiny app inside the package? Is the documentation sufficient to get started? (4 marks)
+
+# Tips to bag
+• A paragraph wrapping up what you’ve learned from reviewing the package? (2 marks)
+
+# Appendix
+
+3. Complete the check list on the following page that reviews different components of the package and add it as an appendix to your post. (5 marks) 
+
+## Package Review
+*Please check off boxes as applicable, and elaborate in comments below.*
+
+#### Documentation  
+The package includes all the following forms of documentation:  
+
+- [x] **Installation instructions:** for the package is found in README  
+- [ ] **Vignette(s)** demonstrating major functionality that runs successfully locally  
+- [x] **Function Documentation:** for all exported functions in R help  
+- [ ] **Examples** for all exported functions in R Help that run successfully locally 
+
+#### Functionality  
+- [ ] **Installation:** Installation succeeds as documented.  
+- [ ] **Functionality:** Any functional claims of the software been confirmed.  
+- [ ] **Automated tests:** Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.
+

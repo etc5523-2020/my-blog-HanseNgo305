@@ -1,0 +1,39 @@
+Package: covidasean
+Title: Comparing Covid19 Outbreak between 5 ASEAN Countries
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Dea",
+           family = "Editya",
+           role = c("aut", "cre"),
+           email = "dedi0003@student.monash.edu",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Providing shiny dashboard to compare covid-19 outbreak in ASEAN countries comprise Indonesia, Malaysia, Singapore, Philippines and Thailand.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
+Imports: 
+    shiny,
+    zoo,
+    dplyr,
+    lubridate,
+    tidycovid19,
+    plotly,
+    ggplot2,
+    kableExtra,
+    magrittr,
+    wbstats
+Suggests: 
+    knitr,
+    rmarkdown,
+    tibble,
+    testthat,
+    tidyverse,
+    tsibble
+Remotes:
+    nset-ornl/wbstats,
+    joachim-gassen/tidycovid19
+VignetteBuilder: knitr

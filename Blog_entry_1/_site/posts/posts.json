@@ -1,8 +1,8 @@
 [
   {
     "path": "posts/shiny_neighbour/",
-    "title": "Visit your Shiny neighbour",
-    "description": "In the last blog, I had the chance to showcase my most recent Shiny app done for a class assignment. In this blog, I would love to pay a visit to one of my classmate's app from the same assignment. It is always an experience to see how your neighbour is doing (not all of the time, though) and be able to learn new things from his or her works.",
+    "title": "Unboxing an R package",
+    "description": "Unboxing stuffs has always been a pleasure, and it would be even more so when you spent hours choosing the items inside or actually building the items inside. I am very excited today to unbox an R package created by one of my classmate for his assignment. We will have a look at his package, trying to learn what he had done best and what he could do to improve his work.",
     "author": [
       {
         "name": "Hanh Ngo",
@@ -12,7 +12,7 @@
     "date": "2020-10-28",
     "categories": [],
     "preview": {},
-    "last_modified": "2020-10-28T16:19:57+07:00",
+    "last_modified": "2020-10-29T03:56:51+07:00",
     "input_file": "shiny_neighbour.utf8.md"
   },
   {

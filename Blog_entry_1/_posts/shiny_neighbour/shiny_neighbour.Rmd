@@ -23,7 +23,7 @@ To launch the app contained in the package, Dea set up a function called `launch
 The package's structure contained everythings we need to build and run a simple package. As we can see from an image below, Dea had created a description, a readme, documentation for the main two of his five R functions (nested under the _man_ folder), vignettes and two unit tests for his package which is enough to get you started with. Moreover, his [pkgdown page](https://etc5523-2020.github.io/r-package-assessment-dedi0003/) was promptly set up which really helps navigating through his package. Well done here Dea!
 
 ```{r eval = FALSE}
-fs::dir_tree(path = "/Users/HanseMac/Desktop/Monash/ETC5523_Communicating_with_data/Blog_entry/my-blog-HanseNgo305/r-package-assessment-dedi0003-master", recurse = FALSE)
+fs::dir_tree(path = "/Users/HanseMac/Desktop/Monash/ETC5523_Communicating_with_data/Blog_entry/r-package-assessment-dedi0003-master", recurse = FALSE)
 ```
 
 ```{r structure}
@@ -33,11 +33,184 @@ knitr::include_graphics(file.path(getwd(),"structure.png"))
 
 # Potential area for improvement
 
+Whilst Dea was doing a wonderful job creating his first R package, the
+
 ## The package
+If you noticed Dea had a **covidsean folder** existed inside his R project. It was a sub folder.
+
+The github page was not dragged out to the surface, making it hard to track down.
+
+```{r github-page, out.height= '50%'}
+knitr::include_graphics(file.path(getwd(),"page.png"))
+```
+
+Is this because he hasnt setup the github pages?
+
+```{r github-setting}
+knitr::include_graphics(file.path(getwd(),"page-setting.png"))
+```
 
 
+Package code
+
+Refactor?
 
 ## The Shiny app
+
+**1. The code**
+
+The highlight of the dashboard was the plotly-click charts where, in this case, you can click on each country presented in the confirmed cases chart (the blue bar chart) and subsequently, the line plot underneath will show the corresponding trend lines (the line chart) for your selected country as shown in the extract below.
+
+```{r}
+knitr::include_graphics(file.path(getwd(),"click-error.gif"))
+```
+
+However, as you can see, there was an error produced when you click on the line instead of the bar as instructed in the guidance. In fact, such error would also occur if you clicked on the lines in the "Trend of People's Mobility" chart. So what happended here?
+
+First we will have a look at the source code in the belowing code block:
+
+```{r example, eval = FALSE, echo = TRUE}
+# Code to produce bar chart
+    output$case <- covidasean:::render_case() 
+    
+# Code to produce line chart
+    output$trendchart <- renderPlotly({
+        d <- event_data("plotly_click")
+            if (is.null(d) return(
+                case_plot <- covid_asean_df %>%
+                    filter(country == "Indonesia") %>%
+                    ggplot(aes(x = date)) +
+                    geom_line(aes(y = ave_new_cases, color ="avg cases"), size = 1) +
+                    geom_line(aes(y = ave_new_deaths, color ="avg deaths"), size = 1, alpha = 0.5) +
+                    geom_line(aes(y = ave_new_recovered, color ="avg recovered"), size = 1, alpha =0.5) +
+                    theme_minimal() +
+                    ylab("Count")+
+                    ggtitle(paste0("Covid-19 Cases in Indonesia", d$x))+
+                    theme(panel.grid.major.x = element_line(),
+                          panel.grid.minor = element_blank(),
+                          legend.position="top", legend.box = "horizontal")
+            )
+
+        case_plot <- covid_asean_df %>%
+            filter(country %in% d$x) %>%
+            ggplot(aes(x = date)) +
+            geom_line(aes(y = ave_new_cases, color ="avg cases"), size = 1) +
+            geom_line(aes(y = ave_new_deaths, color ="avg deaths"), size = 1, alpha = 0.5) +
+            geom_line(aes(y = ave_new_recovered, color ="avg recovered"), size = 1, alpha =0.5) +
+            theme_minimal() +
+            ylab("Count")+
+            ggtitle(paste0("Covid-19 Cases in ", d$x))+
+            theme(panel.grid.major.x = element_line(),
+                  panel.grid.minor = element_blank(),
+                  legend.position="top", legend.box = "horizontal")
+
+            return(ggplotly(case_plot)) %>%
+                config(displayModeBar = F)  %>%
+                layout(legend = list(orientation = "h", x = 0.2, y = -0.1))
+    })
+```
+
+He had the bar chart created by running a function from an external R script called `render_case.R` as, i believed, an attempt to refactor the code. We should check that out too:
+
+```{r eval = FALSE, echo = TRUE}
+render_case <- function(){
+renderPlotly({
+  total_case <- covid_asean_df %>%
+    group_by(country) %>%
+    summarise(confirmed_cases = sum(new_cases))
+
+  total_case %>%
+    plot_ly(x = ~country, y = ~confirmed_cases) %>%
+    config(displayModeBar = F)
+}) }
+```
+
+There are three problems from these two code blocks:
+
+- Dea had not specified the _"source"_ plot which the _"plotly_click"_ event referred to. As the result, whenever Shiny detects a _"plotly_click"_ event, it will change the plot, disregarding of the fact that wrong "clicked" plot will lead to the event plot not displaying correctly. In this case, the source plot is the bar plot while the event plot is the "COVID-19 Cases in xxx" line plot.   
+- Fixing this error is not complicated, however the way Dea structured the code made the fix struggling. The source plot in the app was created by calling out a function. However, the _"plotly_click"_ event might not recognise the _"source"_ identified for a plot put within a function from an external source (i.e not in the same R script with an event plot).  
+- The code to produce the line chart is quite lengthy and is a potential candidate for refactoring. Dea's idea was that when there is no _"plotly_click"_ event, the default chart will be of Indonesia, not other countries.    
+
+Whilst his ideas are great, we can definitely make them better. I had tried to improvise his code, addressing the mentioned problems. The result is shown below:
+
+```{r}
+knitr::include_graphics(file.path(getwd(),"fix-error.gif"))
+```
+
+Here is the improvised source code, I have also included comments to places where i made ammendment. 
+
+```{r improvision, eval = FALSE, echo = TRUE}
+# Code to build bar chart
+output$case <- 
+    # Need to bring the plot to the same place with plotly_click event to trigger the source
+        renderPlotly({
+            total_case <- covid_asean_df %>%
+                group_by(country) %>%
+                summarise(confirmed_cases = sum(new_cases))
+            p <- total_case %>%
+                plot_ly(x = ~country, y = ~confirmed_cases, source = "to-click") %>%
+                config(displayModeBar = F)
+            p
+        })
+
+# Create this new variable to response to the plotly_click event
+    selectedcountry <- reactiveVal()
+    observeEvent(event_data("plotly_click", source = "to-click"), {
+        selectedcountry(as.character(event_data("plotly_click", source = "to-click")$x))
+    })
+    
+# Code to build line chart
+output$trendchart <- renderPlotly({
+    # Create display_country to help shorten the code and remove the Indonesia code block
+      if (is.null(selectedcountry())) {
+      display_country <-  "Indonesia"}
+      else {display_country <- selectedcountry()}
+  
+    # Remove entire Indonesia code block
+           # return(
+            #    case_plot <- covid_asean_df %>%
+            #        filter(country == "Indonesia") %>%
+            #        ggplot(aes(x = date)) +
+            #        geom_line(aes(y = ave_new_cases, color ="avg cases"), size = 1) +
+            #        geom_line(aes(y = ave_new_deaths, color ="avg deaths"), size = 1, alpha = 0.5) +
+                    # geom_line(aes(y = ave_work, color ="Workplaces"), size = 1.2) +
+                    # geom_line(aes(y = ave_station, color ="Stations"), size = 1.2)+
+            #        geom_line(aes(y = ave_new_recovered, color ="avg recovered"), size = 1, alpha =0.5) +
+            #        theme_minimal() +
+            #        ylab("Count")+
+            #        ggtitle(paste0("Covid-19 Cases in Indonesia", selectedcountry()))+
+                    # facet_wrap(.~ country, nrow = 1)+
+            #        theme(panel.grid.major.x = element_line(),
+            #              panel.grid.minor = element_blank(),
+            #              legend.position="top", legend.box = "horizontal")
+            #)
+
+      case_plot <- covid_asean_df %>%
+        # Replace the display_country in the filter
+            filter(country %in% display_country) %>%
+            ggplot(aes(x = date)) +
+            geom_line(aes(y = ave_new_cases, color ="avg cases"), size = 1) +
+            geom_line(aes(y = ave_new_deaths, color ="avg deaths"), size = 1, alpha = 0.5) +
+            geom_line(aes(y = ave_new_recovered, color ="avg recovered"), size = 1, alpha =0.5) +
+            theme_minimal() +
+            ylab("Count")+
+        # Replace the display_country also here to create the title
+            ggtitle(paste0("Covid-19 Cases in ", display_country))+
+            theme(panel.grid.major.x = element_line(),
+                  panel.grid.minor = element_blank(),
+                  legend.position="top", legend.box = "horizontal")
+            return(ggplotly(case_plot)) %>%
+                config(displayModeBar = F)  %>%
+                layout(legend = list(orientation = "h", x = 0.2, y = -0.1))
+    })
+```
+
+
+**2. The layout**
+
+
+
+rearrange the plot to better relate to the input --> the mobility input has nothing to do with chosing the country above, may be seperated into different row to avoid confusion. 
 
 • A paragraph that explores the questions: Are the improvements that could be made to the code? Are there improvements that could be made to the shiny app inside the package? Is the documentation sufficient to get started? (4 marks)
 

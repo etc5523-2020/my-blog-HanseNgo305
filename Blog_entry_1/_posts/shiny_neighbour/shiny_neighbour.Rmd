@@ -33,27 +33,48 @@ knitr::include_graphics(file.path(getwd(),"structure.png"))
 
 # Potential area for improvement
 
-Whilst Dea was doing a wonderful job creating his first R package, the
+Whilst Dea was doing a wonderful job creating his first R package, there certainly are a lot of areas for improvement. I will divide my recommendation into two separate parts: the package and the Shiny app. 
 
 ## The package
-If you noticed Dea had a **covidsean folder** existed inside his R project. It was a sub folder.
 
-The github page was not dragged out to the surface, making it hard to track down.
+**1. The package structure**
 
-```{r github-page, out.height= '50%'}
-knitr::include_graphics(file.path(getwd(),"page.png"))
-```
+If you noticed, Dea had a **covidsean** folder existed inside his R project. I was wondering what that was at first. Turns out it is a sub folder that contains the exact everything that the parent folder has. My best guess was that eventhough the original class repo was created as a package already, when Dea cloned the repo down to start building his package, he used `usethis::create_package("pkgname")` to yet again create another package nested inside a package. I figured Dea could have faced a lot of troubles for this. I would totally recommend him removing all the unused folders/ files to avoid clustering and confusion for others.  
 
-Is this because he hasnt setup the github pages?
+**2. The github pages**
+
+Whilst I am happy that his pkgdown page has done me a great favour guiding me through the app, I must confess that it took me a while to locate where it resides. Normally if we specified the source for the Github pages in the Setting as below:
 
 ```{r github-setting}
 knitr::include_graphics(file.path(getwd(),"page-setting.png"))
 ```
 
+On the right hand side of the "Code" page, next to the Readme, you would find something under the Environments. Clicking on the **github-pages** would bring you to the action log where you can get access to the pkgdown site by viewing deployment. 
 
-Package code
+```{r github-page, out.height= '50%'}
+knitr::include_graphics(file.path(getwd(),"page.png"))
+```
 
-Refactor?
+I manages to track down Dea's pkgdown site by visiting the chat he had with our lecturer in the Pull requests tab. I would recommend Dea to set up the Github pages source for easier access to his pkgdown site.
+
+**3. The unit tests**
+
+Dea had two unit tests for his package. One is for testing the length of the `render_case()` function which was expected to return 1 for only one plot generated; the other test is for the length of the `left_sidebar function which would expect to return 3 for three inputs he set up in the panel. All tests passed smoothly.
+
+I would say whilst I'm happy that the tests worked for him (i'm sure everyone knew it could be stressful get a pass on a unit test when your deadline drawed near), i think these two tests are a little bit simple and somehow obvious to me. Further more, there is not much to expand for these two tests as the object tests are quite simple. I would suggest there are other potential areas to build the unit test on, for example, his table. 
+
+Dea set up a table that would return results based on your selected date input. However, there is a latent error embedded in this kind of input, that what would happen if your selected dates are out of the range of the dataset employed? It would return an error like in the picture below:
+
+```{r}
+knitr::include_graphics(file.path(getwd(),"date-error.png"))
+```
+
+There are two noticable criteria for this date input to work:
+
+- Both the begin date and end date have to be smaller than the `max(date)` of the dataset.  
+- The end date has to be bigger than the begin date.  
+
+I at first did not notice but when i started to scan out for potential candidate for the unit test, this glitch was brought to attention. It is easy to neglect points like this, especially when you work with a lot of inputs and functions, spanding across a lot of pages in your dashboard.
 
 ## The Shiny app
 
@@ -65,7 +86,7 @@ The highlight of the dashboard was the plotly-click charts where, in this case, 
 knitr::include_graphics(file.path(getwd(),"click-error.gif"))
 ```
 
-However, as you can see, there was an error produced when you click on the line instead of the bar as instructed in the guidance. In fact, such error would also occur if you clicked on the lines in the "Trend of People's Mobility" chart. So what happended here?
+However, as you can see, there was an error produced when you click on the line instead of the bar as instructed in the guidance. In fact, such error would also occur if you click on the lines in the "Trend of People's Mobility" chart. So what happended here?
 
 First we will have a look at the source code in the belowing code block:
 
@@ -127,9 +148,9 @@ renderPlotly({
 
 There are three problems from these two code blocks:
 
-- Dea had not specified the _"source"_ plot which the _"plotly_click"_ event referred to. As the result, whenever Shiny detects a _"plotly_click"_ event, it will change the plot, disregarding of the fact that wrong "clicked" plot will lead to the event plot not displaying correctly. In this case, the source plot is the bar plot while the event plot is the "COVID-19 Cases in xxx" line plot.   
+- Dea had not specified the _"source"_ plot which the _"plotly_click"_ event referred to. As a result, whenever Shiny detects a _"plotly_click"_ event, it will change the plot, disregarding of the fact that wrong "clicked" plot will lead to the event plot not displaying correctly. In this case, the source plot is the bar plot whilst the event plot is the "COVID-19 Cases in xxx" line plot.   
 - Fixing this error is not complicated, however the way Dea structured the code made the fix struggling. The source plot in the app was created by calling out a function. However, the _"plotly_click"_ event might not recognise the _"source"_ identified for a plot put within a function from an external source (i.e not in the same R script with an event plot).  
-- The code to produce the line chart is quite lengthy and is a potential candidate for refactoring. Dea's idea was that when there is no _"plotly_click"_ event, the default chart will be of Indonesia, not other countries.    
+- The code to produce the line chart is quite lengthy and is a potential candidate for refactoring. Dea's idea was that when there is no _"plotly_click"_ event, the default chart will be of Indonesia, not any other countries.    
 
 Whilst his ideas are great, we can definitely make them better. I had tried to improvise his code, addressing the mentioned problems. The result is shown below:
 
@@ -148,12 +169,12 @@ output$case <-
                 group_by(country) %>%
                 summarise(confirmed_cases = sum(new_cases))
             p <- total_case %>%
+              # Indicate the source
                 plot_ly(x = ~country, y = ~confirmed_cases, source = "to-click") %>%
                 config(displayModeBar = F)
-            p
-        })
+            p })
 
-# Create this new variable to response to the plotly_click event
+    # Create this new variable to response to the plotly_click event
     selectedcountry <- reactiveVal()
     observeEvent(event_data("plotly_click", source = "to-click"), {
         selectedcountry(as.character(event_data("plotly_click", source = "to-click")$x))
@@ -206,13 +227,23 @@ output$trendchart <- renderPlotly({
 ```
 
 
-**2. The layout**
+**2. The app layout**
 
+The layout of the plot is a bit confusing to me. In the side bar we have three inputs to choose from the list. However, the first two belongs to the Mobility plot which located at the bottom of the page - furthest from the input panel. The last one had nothing to do with either of the plots but the tables located inside the side bar. 
 
+I was also first at lost of the Bibliography button when i could not locate the Bibliography when i chose "Show". Turned out the unfolded content was put way in the bottom of the page, which you have to scroll down to see. It was hard to catch if you did not look carefully. 
 
-rearrange the plot to better relate to the input --> the mobility input has nothing to do with chosing the country above, may be seperated into different row to avoid confusion. 
+You can have a glimpse through the app interface in the screenshot below:
 
-• A paragraph that explores the questions: Are the improvements that could be made to the code? Are there improvements that could be made to the shiny app inside the package? Is the documentation sufficient to get started? (4 marks)
+```{r dashboard}
+knitr::include_graphics(file.path(getwd(),"dashboard.png"))
+```
+
+To make the layout friendlier, I would recommend Dea to:    
+
+- Separate the inputs into different, distinguised parts of the side bar rather than put all of them together in one place. Put the plots/ tables related to the inputs closed to each other.  
+- The "select country" inputs is somehow related to the plotly_event click plots where "country" served as a trigger for change. I would suggest link the table and these first two plots together by using `observeEvent` combined with `updateSelectizeInput`. That way, when ones chose a country from a drop down list, the table and the "Covid-19 Cases" line plot will change at once. Similary, when one chosed a country from the bar plot, the table and the "Covid-19 Cases" line plot will also change. In my Shiny app, i was able to perform this combo but it will take quite a handful of trials and errors to finally get it work. I will try to get my hands on Dea's app to reflect my recommendation when i have more time.   
+- I would recommend to put the Bibliography (or References) and the introduction of the app into a separate page to avoid clustering.  
 
 # Tips to bag
 • A paragraph wrapping up what you’ve learned from reviewing the package? (2 marks)
@@ -233,7 +264,7 @@ The package includes all the following forms of documentation:
 - [ ] **Examples** for all exported functions in R Help that run successfully locally 
 
 #### Functionality  
-- [ ] **Installation:** Installation succeeds as documented.  
+- [x] **Installation:** Installation succeeds as documented.  
 - [ ] **Functionality:** Any functional claims of the software been confirmed.  
 - [ ] **Automated tests:** Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.
 

@@ -1330,9 +1330,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <h1 id="an-app-overview">An app overview</h1>
 <p>The covidasean package could be downloaded and installed via Dea’s github <a href="https://github.com/etc5523-2020/r-package-assessment-dedi0003">here</a>. I was able to install and build the package locally without any problems.</p>
 <p>To launch the app contained in the package, Dea set up a function called <code>launch_app()</code> which can be typed into the console to call the app out. A minor problem arised when two of the dependence packages he used for his Shiny app, the <em>tidycovid19</em> and <em>wbstats</em>, were temporarily taken off CRAN. Users who did not have these two packages installed beforehand have to install them remotely from Github. Eventhough it took extra works, the app launched successfully after the two missing packages were installed.</p>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="dashboard.png" width="752" /></p>
-</div>
 <p>The package’s structure contained everythings we need to build and run a simple package. As we can see from an image below, Dea had created a description, a readme, documentation for the main two of his five R functions (nested under the <em>man</em> folder), vignettes and two unit tests for his package which is enough to get you started with. Moreover, his <a href="https://etc5523-2020.github.io/r-package-assessment-dedi0003/">pkgdown page</a> was promptly set up which really helps navigating through his package. Well done here Dea!</p>
 <div class="layout-chunk" data-layout="l-body">
 
@@ -1341,19 +1338,22 @@ document.addEventListener('DOMContentLoaded', function() {
 <p><img src="structure.png" width="603" /></p>
 </div>
 <h1 id="potential-area-for-improvement">Potential area for improvement</h1>
-<p>Whilst Dea was doing a wonderful job creating his first R package, the</p>
+<p>Whilst Dea was doing a wonderful job creating his first R package, there certainly are a lot of areas for improvement. I will divide my recommendation into two separate parts: the package and the Shiny app.</p>
 <h2 id="the-package">The package</h2>
-<p>If you noticed Dea had a <strong>covidsean folder</strong> existed inside his R project. It was a sub folder.</p>
-<p>The github page was not dragged out to the surface, making it hard to track down.</p>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="page.png" width="298" height="50%" /></p>
-</div>
-<p>Is this because he hasnt setup the github pages?</p>
+<p><strong>1. The package structure</strong></p>
+<p>If you noticed Dea had a <strong>covidsean</strong> folder existed inside his R project. I was wondering what that was at first. Turns out it is a sub folder that contains the exact everythings that the parent folder has. My best guess was that eventhough the original class repo was created as a package already, when Dea cloned the repo down to start building his package, he used <code>usethis::create_package(&quot;pkgname&quot;)</code> to yet again created another package nested inside a package. I figured Dea could have faced a lot of troubles for this. I would totally recommend him removing all the unused folders/ files to avoid clustering and confusion for others.</p>
+<p><strong>2. The github pages</strong></p>
+<p>Whilst I am happy that his pkgdown page has done me a great favour guiding me through the app, I must confess that it took me a while to locate where it resides. Normally if we specified the source for the Github pages in the Setting as below:</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="page-setting.png" width="866" /></p>
 </div>
-<p>Package code</p>
-<p>Refactor?</p>
+<p>On the right hand side of the “Code” page, next to the Readme, you would find something under the Environments. Clicking on the <strong>github-pages</strong> would bring you to the action log where you can get access to the pkgdown site by viewing deployment.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="page.png" width="298" height="50%" /></p>
+</div>
+<p>I manages to track down Dea’s pkgdown site by visiting the chat he had with our lecturer in the Pull requests tab. I would recomment Dea to set up the Github pages source for easier access to his pkgdown site.</p>
+<p><strong>3. The unit tests</strong></p>
+<p>Dea had two unit tests for his package.</p>
 <h2 id="the-shiny-app">The Shiny app</h2>
 <p><strong>1. The code</strong></p>
 <p>The highlight of the dashboard was the plotly-click charts where, in this case, you can click on each country presented in the confirmed cases chart (the blue bar chart) and subsequently, the line plot underneath will show the corresponding trend lines (the line chart) for your selected country as shown in the extract below.</p>
@@ -1423,7 +1423,7 @@ renderPlotly({
 </li>
 <li>Fixing this error is not complicated, however the way Dea structured the code made the fix struggling. The source plot in the app was created by calling out a function. However, the <em>“plotly_click”</em> event might not recognise the <em>“source”</em> identified for a plot put within a function from an external source (i.e not in the same R script with an event plot).<br />
 </li>
-<li>The code to produce the line chart is quite lengthy and is a potential candidate for refactoring. Dea’s idea was that when there is no <em>“plotly_click”</em> event, the default chart will be of Indonesia, not other countries.</li>
+<li>The code to produce the line chart is quite lengthy and is a potential candidate for refactoring. Dea’s idea was that when there is no <em>“plotly_click”</em> event, the default chart will be of Indonesia, not any other countries.</li>
 </ul>
 <p>Whilst his ideas are great, we can definitely make them better. I had tried to improvise his code, addressing the mentioned problems. The result is shown below:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1445,7 +1445,7 @@ output$case &lt;-
             p
         })
 
-# Create this new variable to response to the plotly_click event
+    # Create this new variable to response to the plotly_click event
     selectedcountry &lt;- reactiveVal()
     observeEvent(event_data(&quot;plotly_click&quot;, source = &quot;to-click&quot;), {
         selectedcountry(as.character(event_data(&quot;plotly_click&quot;, source = &quot;to-click&quot;)$x))
@@ -1496,9 +1496,21 @@ output$trendchart &lt;- renderPlotly({
                 layout(legend = list(orientation = &quot;h&quot;, x = 0.2, y = -0.1))
     })</code></pre>
 </div>
-<p><strong>2. The layout</strong></p>
-<p>rearrange the plot to better relate to the input –&gt; the mobility input has nothing to do with chosing the country above, may be seperated into different row to avoid confusion.</p>
-<p>• A paragraph that explores the questions: Are the improvements that could be made to the code? Are there improvements that could be made to the shiny app inside the package? Is the documentation sufficient to get started? (4 marks)</p>
+<p><strong>2. The app layout</strong></p>
+<p>The layout of the plot is a bit confusing to me. In the side bar we have three inputs to choose from the list. However, the first two belongs to the Mobility plot which located at the bottom of the page - furthest from the input panel. The last one had nothing to do with either of the plots but the tables located inside the side bar.</p>
+<p>I was also first at lost of the Bibliography button when i could not locate the Bibliography when i chose “Show”. Turned out the unfolded content was put way in the bottom of the page, which you have to scroll down to see. It was hard to catch if you did not look carefully.</p>
+<p>You can have a glimpse through the app interface in the screenshot below:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="dashboard.png" width="752" /></p>
+</div>
+<p>To make the layout friendlier, I would recommend Dea to:</p>
+<ul>
+<li>Separate the inputs into different, distinguised parts of the side bar rather than put all of them together in one place. Put the plots/ tables related to the inputs closed to each other.<br />
+</li>
+<li>The “select country” inputs is somehow related to the plotly_event click plots where “country” served as a trigger for change. I would suggest link the table and these first two plots together by using <code>observeEvent</code> combined with <code>updateSelectizeInput</code>. That way, when ones chose a country from a drop down list, the table and the “Covid-19 Cases” line plot will change at once. Similary, when one chosed a country from the bar plot, the table and the “Covid-19 Cases” line plot will also change. In my Shiny app, i was able to perform this combo but it will take quite a handful of trials and errors to finally work. I will try to get my hands on Dea’s app to reflect my recommendation when i have more time.<br />
+</li>
+<li>I would recommend put the Bibliography (or References) and the introduction of the app into a separate page to avoid clustering.</li>
+</ul>
 <h1 id="tips-to-bag">Tips to bag</h1>
 <p>• A paragraph wrapping up what you’ve learned from reviewing the package? (2 marks)</p>
 <h1 id="appendix">Appendix</h1>
@@ -1520,7 +1532,7 @@ output$trendchart &lt;- renderPlotly({
 </ul>
 <h4 id="functionality">Functionality</h4>
 <ul>
-<li>[ ] <strong>Installation:</strong> Installation succeeds as documented.<br />
+<li>[x] <strong>Installation:</strong> Installation succeeds as documented.<br />
 </li>
 <li>[ ] <strong>Functionality:</strong> Any functional claims of the software been confirmed.<br />
 </li>

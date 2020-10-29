@@ -50,7 +50,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["click-error.gif","dashboard.png","fix-error.gif","page-setting.png","page.png","shiny_neighbour_files/bowser-1.9.3/bowser.min.js","shiny_neighbour_files/distill-2.2.21/template.v2.js","shiny_neighbour_files/jquery-1.11.3/jquery.min.js","shiny_neighbour_files/webcomponents-2.0.0/webcomponents.js","structure.png"]}
+  {"type":"character","attributes":{},"value":["click-error.gif","dashboard.png","date-error.png","fix-error.gif","page-setting.png","page.png","shiny_neighbour_files/bowser-1.9.3/bowser.min.js","shiny_neighbour_files/distill-2.2.21/template.v2.js","shiny_neighbour_files/jquery-1.11.3/jquery.min.js","shiny_neighbour_files/webcomponents-2.0.0/webcomponents.js","structure.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 
@@ -1341,7 +1341,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>Whilst Dea was doing a wonderful job creating his first R package, there certainly are a lot of areas for improvement. I will divide my recommendation into two separate parts: the package and the Shiny app.</p>
 <h2 id="the-package">The package</h2>
 <p><strong>1. The package structure</strong></p>
-<p>If you noticed Dea had a <strong>covidsean</strong> folder existed inside his R project. I was wondering what that was at first. Turns out it is a sub folder that contains the exact everythings that the parent folder has. My best guess was that eventhough the original class repo was created as a package already, when Dea cloned the repo down to start building his package, he used <code>usethis::create_package(&quot;pkgname&quot;)</code> to yet again created another package nested inside a package. I figured Dea could have faced a lot of troubles for this. I would totally recommend him removing all the unused folders/ files to avoid clustering and confusion for others.</p>
+<p>If you noticed, Dea had a <strong>covidsean</strong> folder existed inside his R project. I was wondering what that was at first. Turns out it is a sub folder that contains the exact everything that the parent folder has. My best guess was that eventhough the original class repo was created as a package already, when Dea cloned the repo down to start building his package, he used <code>usethis::create_package(&quot;pkgname&quot;)</code> to yet again create another package nested inside a package. I figured Dea could have faced a lot of troubles for this. I would totally recommend him removing all the unused folders/ files to avoid clustering and confusion for others.</p>
 <p><strong>2. The github pages</strong></p>
 <p>Whilst I am happy that his pkgdown page has done me a great favour guiding me through the app, I must confess that it took me a while to locate where it resides. Normally if we specified the source for the Github pages in the Setting as below:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1351,16 +1351,28 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="page.png" width="298" height="50%" /></p>
 </div>
-<p>I manages to track down Dea’s pkgdown site by visiting the chat he had with our lecturer in the Pull requests tab. I would recomment Dea to set up the Github pages source for easier access to his pkgdown site.</p>
+<p>I manages to track down Dea’s pkgdown site by visiting the chat he had with our lecturer in the Pull requests tab. I would recommend Dea to set up the Github pages source for easier access to his pkgdown site.</p>
 <p><strong>3. The unit tests</strong></p>
-<p>Dea had two unit tests for his package.</p>
+<p>Dea had two unit tests for his package. One is for testing the length of the <code>render_case()</code> function which was expected to return 1 for only one plot generated; the other test is for the length of the `left_sidebar function which would expect to return 3 for three inputs he set up in the panel. All tests passed smoothly.</p>
+<p>I would say whilst I’m happy that the tests worked for him (i’m sure everyone knew it could be stressful get a pass on a unit test when your deadline drawed near), i think these two tests are a little bit simple and somehow obvious to me. Further more, there is not much to expand for these two tests as the object tests are quite simple. I would suggest there are other potential areas to build the unit test on, for example, his table.</p>
+<p>Dea set up a table that would return results based on your selected date input. However, there is a latent error embedded in this kind of input, that what would happen if your selected dates are out of the range of the dataset employed? It would return an error like in the picture below:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="date-error.png" width="891" /></p>
+</div>
+<p>There are two noticable criteria for this date input to work:</p>
+<ul>
+<li>Both the begin date and end date have to be smaller than the <code>max(date)</code> of the dataset.<br />
+</li>
+<li>The end date has to be bigger than the begin date.</li>
+</ul>
+<p>I at first did not notice but when i started to scan out for potential candidate for the unit test, this glitch was brought to attention. It is easy to neglect points like this, especially when you work with a lot of inputs and functions, spanding across a lot of pages in your dashboard.</p>
 <h2 id="the-shiny-app">The Shiny app</h2>
 <p><strong>1. The code</strong></p>
 <p>The highlight of the dashboard was the plotly-click charts where, in this case, you can click on each country presented in the confirmed cases chart (the blue bar chart) and subsequently, the line plot underneath will show the corresponding trend lines (the line chart) for your selected country as shown in the extract below.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="click-error.gif" /><!-- --></p>
 </div>
-<p>However, as you can see, there was an error produced when you click on the line instead of the bar as instructed in the guidance. In fact, such error would also occur if you clicked on the lines in the “Trend of People’s Mobility” chart. So what happended here?</p>
+<p>However, as you can see, there was an error produced when you click on the line instead of the bar as instructed in the guidance. In fact, such error would also occur if you click on the lines in the “Trend of People’s Mobility” chart. So what happended here?</p>
 <p>First we will have a look at the source code in the belowing code block:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
@@ -1419,7 +1431,7 @@ renderPlotly({
 </div>
 <p>There are three problems from these two code blocks:</p>
 <ul>
-<li>Dea had not specified the <em>“source”</em> plot which the <em>“plotly_click”</em> event referred to. As the result, whenever Shiny detects a <em>“plotly_click”</em> event, it will change the plot, disregarding of the fact that wrong “clicked” plot will lead to the event plot not displaying correctly. In this case, the source plot is the bar plot while the event plot is the “COVID-19 Cases in xxx” line plot.<br />
+<li>Dea had not specified the <em>“source”</em> plot which the <em>“plotly_click”</em> event referred to. As a result, whenever Shiny detects a <em>“plotly_click”</em> event, it will change the plot, disregarding of the fact that wrong “clicked” plot will lead to the event plot not displaying correctly. In this case, the source plot is the bar plot whilst the event plot is the “COVID-19 Cases in xxx” line plot.<br />
 </li>
 <li>Fixing this error is not complicated, however the way Dea structured the code made the fix struggling. The source plot in the app was created by calling out a function. However, the <em>“plotly_click”</em> event might not recognise the <em>“source”</em> identified for a plot put within a function from an external source (i.e not in the same R script with an event plot).<br />
 </li>
@@ -1440,10 +1452,10 @@ output$case &lt;-
                 group_by(country) %&gt;%
                 summarise(confirmed_cases = sum(new_cases))
             p &lt;- total_case %&gt;%
+              # Indicate the source
                 plot_ly(x = ~country, y = ~confirmed_cases, source = &quot;to-click&quot;) %&gt;%
                 config(displayModeBar = F)
-            p
-        })
+            p })
 
     # Create this new variable to response to the plotly_click event
     selectedcountry &lt;- reactiveVal()
@@ -1507,16 +1519,12 @@ output$trendchart &lt;- renderPlotly({
 <ul>
 <li>Separate the inputs into different, distinguised parts of the side bar rather than put all of them together in one place. Put the plots/ tables related to the inputs closed to each other.<br />
 </li>
-<li>The “select country” inputs is somehow related to the plotly_event click plots where “country” served as a trigger for change. I would suggest link the table and these first two plots together by using <code>observeEvent</code> combined with <code>updateSelectizeInput</code>. That way, when ones chose a country from a drop down list, the table and the “Covid-19 Cases” line plot will change at once. Similary, when one chosed a country from the bar plot, the table and the “Covid-19 Cases” line plot will also change. In my Shiny app, i was able to perform this combo but it will take quite a handful of trials and errors to finally work. I will try to get my hands on Dea’s app to reflect my recommendation when i have more time.<br />
+<li>The “select country” inputs is somehow related to the plotly_event click plots where “country” served as a trigger for change. I would suggest link the table and these first two plots together by using <code>observeEvent</code> combined with <code>updateSelectizeInput</code>. That way, when ones chose a country from a drop down list, the table and the “Covid-19 Cases” line plot will change at once. Similary, when one chosed a country from the bar plot, the table and the “Covid-19 Cases” line plot will also change. In my Shiny app, i was able to perform this combo but it will take quite a handful of trials and errors to finally get it work. I will try to get my hands on Dea’s app to reflect my recommendation when i have more time.<br />
 </li>
-<li>I would recommend put the Bibliography (or References) and the introduction of the app into a separate page to avoid clustering.</li>
+<li>I would recommend to put the Bibliography (or References) and the introduction of the app into a separate page to avoid clustering.</li>
 </ul>
 <h1 id="tips-to-bag">Tips to bag</h1>
-<p>• A paragraph wrapping up what you’ve learned from reviewing the package? (2 marks)</p>
 <h1 id="appendix">Appendix</h1>
-<ol start="3" type="1">
-<li>Complete the check list on the following page that reviews different components of the package and add it as an appendix to your post. (5 marks)</li>
-</ol>
 <h2 id="package-review">Package Review</h2>
 <p><em>Please check off boxes as applicable, and elaborate in comments below.</em></p>
 <h4 id="documentation">Documentation</h4>

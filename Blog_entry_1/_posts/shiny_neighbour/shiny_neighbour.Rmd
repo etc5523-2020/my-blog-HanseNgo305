@@ -55,11 +55,11 @@ On the right hand side of the "Code" page, next to the Readme, you would find so
 knitr::include_graphics(file.path(getwd(),"page.png"))
 ```
 
-I manages to track down Dea's pkgdown site by visiting the chat he had with our lecturer in the Pull requests tab. I would recommend Dea to set up the Github pages source for easier access to his pkgdown site.
+I managed to track down Dea's pkgdown site by visiting the chat he had with our lecturer in the Pull requests tab. I would recommend Dea to set up the Github pages source for easier access to his pkgdown site.
 
 **3. The unit tests**
 
-Dea had two unit tests for his package. One is for testing the length of the `render_case()` function which was expected to return 1 for only one plot generated; the other test is for the length of the `left_sidebar function which would expect to return 3 for three inputs he set up in the panel. All tests passed smoothly.
+Dea had two unit tests for his package. One is for testing the length of the `render_case()` function which was expected to return 1 for only one plot generated; the other test is for the length of the `left_sidebar()` function which would expect to return 3 for three inputs he set up in the panel. All tests passed smoothly.
 
 I would say whilst I'm happy that the tests worked for him (i'm sure everyone knew it could be stressful get a pass on a unit test when your deadline drawed near), i think these two tests are a little bit simple and somehow obvious to me. Further more, there is not much to expand for these two tests as the object tests are quite simple. I would suggest there are other potential areas to build the unit test on, for example, his table. 
 
@@ -226,6 +226,7 @@ output$trendchart <- renderPlotly({
     })
 ```
 
+I tried to preserve the state of his code as much as could, but i could not make the code work if the source plot and event plot were not in the same place. Hopefully Dea could pick up from here and continue to develop his work further. 
 
 **2. The app layout**
 
@@ -245,12 +246,29 @@ To make the layout friendlier, I would recommend Dea to:
 - The "select country" inputs is somehow related to the plotly_event click plots where "country" served as a trigger for change. I would suggest link the table and these first two plots together by using `observeEvent` combined with `updateSelectizeInput`. That way, when ones chose a country from a drop down list, the table and the "Covid-19 Cases" line plot will change at once. Similary, when one chosed a country from the bar plot, the table and the "Covid-19 Cases" line plot will also change. In my Shiny app, i was able to perform this combo but it will take quite a handful of trials and errors to finally get it work. I will try to get my hands on Dea's app to reflect my recommendation when i have more time.   
 - I would recommend to put the Bibliography (or References) and the introduction of the app into a separate page to avoid clustering.  
 
-# Tips to bag
-• A paragraph wrapping up what you’ve learned from reviewing the package? (2 marks)
+# Experience to bag
+
+I must say that whilst building a package is hard, reviewing one is way harder, or probably because this is my first time doing so. However, there is a lot of things i learnt from reviewing my classmate's work, such as:
+
+**1. The magic of tidying**
+
+Segmenting the workload is essential and I believe should be done at the very start to avoid overwhelming and confusion. For exampe, when i checked the Shiny app, i was again lost at the jungle of code, especially when there are refactored code stored in other R scripts placed somewhere else. It was tempting to read everything from start to finish, trying to understand as much as i could along the way, but soon i realized that focusing on one thing at a time boosts the efficiency way better. I segmented Dea's work into three big parts that called for attention: the bar chart, the COVID-19 line chart and the mobility line chart (The table was straight forward and simple so i left it out). After that, i identified the related elements for each part (the location in the UI, server, the related external function, the imported data if any). Finally i identified the possible links among them all (In this case, the bar chart linked with the COVID-19 line chart by plotly_click event). By doing segmentation in advance, you are better off in the long run when you do diagnosis and improvement as you already know where to look for and if your change in one part can affect another. Even better, by segmenting for others, i begin to think about segmentation for my own code to make other's life easier should they decided to visit my work someday.
+
+**2. His mistakes could be my mistakes**  
+
+I believe it is easier to recognize other's mistakes than your own mistakes. By doing diagnosis for Dea's work, i realized that i also made the same mistakes as he did in some of my previous works (the input date, specifically). It created some kind of memory anchor which will remind me everytime i come across or use this type of input. Turns out that doing review for others actually come back and do me a greater favour than i would expect.  
+
+**3. A share of knowledge**
+
+Finally, I cannot deny that i learnt a lot from other's works. It could be his ideas of organizing the dashboard, analysing data, writing style or his coding style. For example, in Dea's app, i really like the way he used icons to brighten up the rather serious content, and his idea of hiding the bibliography using the Show/Hide button (eventhough i did recommend him to separate the bibliography into another page). The mobility report is also a nice touch. I did not think of the COVID numbers could be presented via this channel as my country did not have this way of reporting. It made me remember one line from the song "Son of Man" written by Phil Collins for the Disney movie "Tarzan" in 1999:
+
+```{r tarzan}
+knitr::include_graphics(file.path(getwd(),"dashboard.png"))
+```
+
+(Well not "teaching" technically but you can relate)
 
 # Appendix
-
-3. Complete the check list on the following page that reviews different components of the package and add it as an appendix to your post. (5 marks) 
 
 ## Package Review
 *Please check off boxes as applicable, and elaborate in comments below.*
@@ -259,12 +277,12 @@ To make the layout friendlier, I would recommend Dea to:
 The package includes all the following forms of documentation:  
 
 - [x] **Installation instructions:** for the package is found in README  
-- [ ] **Vignette(s)** demonstrating major functionality that runs successfully locally  
+- [x] **Vignette(s)** demonstrating major functionality that runs successfully locally  
 - [x] **Function Documentation:** for all exported functions in R help  
-- [ ] **Examples** for all exported functions in R Help that run successfully locally 
+- [x] **Examples** for all exported functions in R Help that run successfully locally 
 
 #### Functionality  
 - [x] **Installation:** Installation succeeds as documented.  
-- [ ] **Functionality:** Any functional claims of the software been confirmed.  
+- [x] **Functionality:** Any functional claims of the software been confirmed.  
 - [ ] **Automated tests:** Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.
 
